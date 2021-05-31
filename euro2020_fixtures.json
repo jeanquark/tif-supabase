@@ -1,0 +1,2465 @@
+{
+    "get": "fixtures",
+    "parameters": {
+        "league": "4",
+        "from": "2021-06-01",
+        "to": "2021-07-31",
+        "season": "2020"
+    },
+    "errors": [],
+    "results": 36,
+    "paging": {
+        "current": 1,
+        "total": 1
+    },
+    "response": [
+        {
+            "fixture": {
+                "id": 657674,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-11T19:00:00+00:00",
+                "timestamp": 1623438000,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 910,
+                    "name": "Stadio Olimpico",
+                    "city": "Roma"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 777,
+                    "name": "Turkey",
+                    "logo": "https://media.api-sports.io/football/teams/777.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 768,
+                    "name": "Italy",
+                    "logo": "https://media.api-sports.io/football/teams/768.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657675,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-12T13:00:00+00:00",
+                "timestamp": 1623502800,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 2607,
+                    "name": "Bakı Olimpiya Stadionu",
+                    "city": "Baku"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 767,
+                    "name": "Wales",
+                    "logo": "https://media.api-sports.io/football/teams/767.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 15,
+                    "name": "Switzerland",
+                    "logo": "https://media.api-sports.io/football/teams/15.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657676,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-12T16:00:00+00:00",
+                "timestamp": 1623513600,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 439,
+                    "name": "Telia Parken",
+                    "city": "København"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 21,
+                    "name": "Denmark",
+                    "logo": "https://media.api-sports.io/football/teams/21.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 1099,
+                    "name": "Finland",
+                    "logo": "https://media.api-sports.io/football/teams/1099.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657677,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-12T19:00:00+00:00",
+                "timestamp": 1623524400,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": null,
+                    "name": "Saint-Petersburg Stadium",
+                    "city": "St. Petersburg"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 1,
+                    "name": "Belgium",
+                    "logo": "https://media.api-sports.io/football/teams/1.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 4,
+                    "name": "Russia",
+                    "logo": "https://media.api-sports.io/football/teams/4.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657678,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-13T13:00:00+00:00",
+                "timestamp": 1623589200,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 489,
+                    "name": "Wembley Stadium",
+                    "city": "London"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 10,
+                    "name": "England",
+                    "logo": "https://media.api-sports.io/football/teams/10.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 3,
+                    "name": "Croatia",
+                    "logo": "https://media.api-sports.io/football/teams/3.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657679,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-13T16:00:00+00:00",
+                "timestamp": 1623600000,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1326,
+                    "name": "Arena Naţională",
+                    "city": "Bucureşti"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 775,
+                    "name": "Austria",
+                    "logo": "https://media.api-sports.io/football/teams/775.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 1105,
+                    "name": "FYR Macedonia",
+                    "logo": "https://media.api-sports.io/football/teams/1105.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657680,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-13T19:00:00+00:00",
+                "timestamp": 1623610800,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1117,
+                    "name": "Johan Cruijff Arena",
+                    "city": "Amsterdam"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 1118,
+                    "name": "Netherlands",
+                    "logo": "https://media.api-sports.io/football/teams/1118.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 772,
+                    "name": "Ukraine",
+                    "logo": "https://media.api-sports.io/football/teams/772.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657681,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-14T13:00:00+00:00",
+                "timestamp": 1623675600,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 2617,
+                    "name": "Hampden Park",
+                    "city": "Glasgow"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 1108,
+                    "name": "Scotland",
+                    "logo": "https://media.api-sports.io/football/teams/1108.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 770,
+                    "name": "Czech Republic",
+                    "logo": "https://media.api-sports.io/football/teams/770.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657682,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-14T16:00:00+00:00",
+                "timestamp": 1623686400,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1970,
+                    "name": "Aviva Stadium",
+                    "city": "Dublin"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 24,
+                    "name": "Poland",
+                    "logo": "https://media.api-sports.io/football/teams/24.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 773,
+                    "name": "Slovakia",
+                    "logo": "https://media.api-sports.io/football/teams/773.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657683,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-14T19:00:00+00:00",
+                "timestamp": 1623697200,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1460,
+                    "name": "San Mamés Barria",
+                    "city": "Bilbao"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 9,
+                    "name": "Spain",
+                    "logo": "https://media.api-sports.io/football/teams/9.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 5,
+                    "name": "Sweden",
+                    "logo": "https://media.api-sports.io/football/teams/5.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657684,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-15T16:00:00+00:00",
+                "timestamp": 1623772800,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": null,
+                    "name": "Puskás Aréna",
+                    "city": "Budapest"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 769,
+                    "name": "Hungary",
+                    "logo": "https://media.api-sports.io/football/teams/769.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 27,
+                    "name": "Portugal",
+                    "logo": "https://media.api-sports.io/football/teams/27.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657685,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-15T19:00:00+00:00",
+                "timestamp": 1623783600,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 700,
+                    "name": "Allianz Arena",
+                    "city": "München"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 1"
+            },
+            "teams": {
+                "home": {
+                    "id": 2,
+                    "name": "France",
+                    "logo": "https://media.api-sports.io/football/teams/2.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 25,
+                    "name": "Germany",
+                    "logo": "https://media.api-sports.io/football/teams/25.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657686,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-16T13:00:00+00:00",
+                "timestamp": 1623848400,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": null,
+                    "name": "Saint-Petersburg Stadium",
+                    "city": "St. Petersburg"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 1099,
+                    "name": "Finland",
+                    "logo": "https://media.api-sports.io/football/teams/1099.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 4,
+                    "name": "Russia",
+                    "logo": "https://media.api-sports.io/football/teams/4.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657687,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-16T16:00:00+00:00",
+                "timestamp": 1623859200,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 2607,
+                    "name": "Bakı Olimpiya Stadionu",
+                    "city": "Baku"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 777,
+                    "name": "Turkey",
+                    "logo": "https://media.api-sports.io/football/teams/777.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 767,
+                    "name": "Wales",
+                    "logo": "https://media.api-sports.io/football/teams/767.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657688,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-16T19:00:00+00:00",
+                "timestamp": 1623870000,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 910,
+                    "name": "Stadio Olimpico",
+                    "city": "Roma"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 768,
+                    "name": "Italy",
+                    "logo": "https://media.api-sports.io/football/teams/768.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 15,
+                    "name": "Switzerland",
+                    "logo": "https://media.api-sports.io/football/teams/15.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657689,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-17T13:00:00+00:00",
+                "timestamp": 1623934800,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1326,
+                    "name": "Arena Naţională",
+                    "city": "Bucureşti"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 772,
+                    "name": "Ukraine",
+                    "logo": "https://media.api-sports.io/football/teams/772.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 1105,
+                    "name": "FYR Macedonia",
+                    "logo": "https://media.api-sports.io/football/teams/1105.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657690,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-17T16:00:00+00:00",
+                "timestamp": 1623945600,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 439,
+                    "name": "Telia Parken",
+                    "city": "København"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 21,
+                    "name": "Denmark",
+                    "logo": "https://media.api-sports.io/football/teams/21.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 1,
+                    "name": "Belgium",
+                    "logo": "https://media.api-sports.io/football/teams/1.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657691,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-17T19:00:00+00:00",
+                "timestamp": 1623956400,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1117,
+                    "name": "Johan Cruijff Arena",
+                    "city": "Amsterdam"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 1118,
+                    "name": "Netherlands",
+                    "logo": "https://media.api-sports.io/football/teams/1118.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 775,
+                    "name": "Austria",
+                    "logo": "https://media.api-sports.io/football/teams/775.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657692,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-18T13:00:00+00:00",
+                "timestamp": 1624021200,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1970,
+                    "name": "Aviva Stadium",
+                    "city": "Dublin"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 5,
+                    "name": "Sweden",
+                    "logo": "https://media.api-sports.io/football/teams/5.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 773,
+                    "name": "Slovakia",
+                    "logo": "https://media.api-sports.io/football/teams/773.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657693,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-18T16:00:00+00:00",
+                "timestamp": 1624032000,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 2617,
+                    "name": "Hampden Park",
+                    "city": "Glasgow"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 3,
+                    "name": "Croatia",
+                    "logo": "https://media.api-sports.io/football/teams/3.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 770,
+                    "name": "Czech Republic",
+                    "logo": "https://media.api-sports.io/football/teams/770.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657694,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-18T19:00:00+00:00",
+                "timestamp": 1624042800,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 489,
+                    "name": "Wembley Stadium",
+                    "city": "London"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 10,
+                    "name": "England",
+                    "logo": "https://media.api-sports.io/football/teams/10.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 1108,
+                    "name": "Scotland",
+                    "logo": "https://media.api-sports.io/football/teams/1108.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657695,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-19T13:00:00+00:00",
+                "timestamp": 1624107600,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": null,
+                    "name": "Puskás Aréna",
+                    "city": "Budapest"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 769,
+                    "name": "Hungary",
+                    "logo": "https://media.api-sports.io/football/teams/769.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 2,
+                    "name": "France",
+                    "logo": "https://media.api-sports.io/football/teams/2.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657696,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-19T16:00:00+00:00",
+                "timestamp": 1624118400,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 700,
+                    "name": "Allianz Arena",
+                    "city": "München"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 27,
+                    "name": "Portugal",
+                    "logo": "https://media.api-sports.io/football/teams/27.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 25,
+                    "name": "Germany",
+                    "logo": "https://media.api-sports.io/football/teams/25.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657697,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-19T19:00:00+00:00",
+                "timestamp": 1624129200,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1460,
+                    "name": "San Mamés Barria",
+                    "city": "Bilbao"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 2"
+            },
+            "teams": {
+                "home": {
+                    "id": 9,
+                    "name": "Spain",
+                    "logo": "https://media.api-sports.io/football/teams/9.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 24,
+                    "name": "Poland",
+                    "logo": "https://media.api-sports.io/football/teams/24.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657698,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-20T16:00:00+00:00",
+                "timestamp": 1624204800,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 2607,
+                    "name": "Bakı Olimpiya Stadionu",
+                    "city": "Baku"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 15,
+                    "name": "Switzerland",
+                    "logo": "https://media.api-sports.io/football/teams/15.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 777,
+                    "name": "Turkey",
+                    "logo": "https://media.api-sports.io/football/teams/777.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657699,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-20T16:00:00+00:00",
+                "timestamp": 1624204800,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 910,
+                    "name": "Stadio Olimpico",
+                    "city": "Roma"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 768,
+                    "name": "Italy",
+                    "logo": "https://media.api-sports.io/football/teams/768.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 767,
+                    "name": "Wales",
+                    "logo": "https://media.api-sports.io/football/teams/767.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657700,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-21T16:00:00+00:00",
+                "timestamp": 1624291200,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1326,
+                    "name": "Arena Naţională",
+                    "city": "Bucureşti"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 772,
+                    "name": "Ukraine",
+                    "logo": "https://media.api-sports.io/football/teams/772.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 775,
+                    "name": "Austria",
+                    "logo": "https://media.api-sports.io/football/teams/775.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657701,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-21T16:00:00+00:00",
+                "timestamp": 1624291200,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1117,
+                    "name": "Johan Cruijff Arena",
+                    "city": "Amsterdam"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 1105,
+                    "name": "FYR Macedonia",
+                    "logo": "https://media.api-sports.io/football/teams/1105.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 1118,
+                    "name": "Netherlands",
+                    "logo": "https://media.api-sports.io/football/teams/1118.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657702,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-21T19:00:00+00:00",
+                "timestamp": 1624302000,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 439,
+                    "name": "Telia Parken",
+                    "city": "København"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 4,
+                    "name": "Russia",
+                    "logo": "https://media.api-sports.io/football/teams/4.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 21,
+                    "name": "Denmark",
+                    "logo": "https://media.api-sports.io/football/teams/21.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657703,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-21T19:00:00+00:00",
+                "timestamp": 1624302000,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": null,
+                    "name": "Saint-Petersburg Stadium",
+                    "city": "St. Petersburg"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 1099,
+                    "name": "Finland",
+                    "logo": "https://media.api-sports.io/football/teams/1099.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 1,
+                    "name": "Belgium",
+                    "logo": "https://media.api-sports.io/football/teams/1.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657704,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-22T19:00:00+00:00",
+                "timestamp": 1624388400,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 2617,
+                    "name": "Hampden Park",
+                    "city": "Glasgow"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 3,
+                    "name": "Croatia",
+                    "logo": "https://media.api-sports.io/football/teams/3.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 1108,
+                    "name": "Scotland",
+                    "logo": "https://media.api-sports.io/football/teams/1108.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657705,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-22T19:00:00+00:00",
+                "timestamp": 1624388400,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 489,
+                    "name": "Wembley Stadium",
+                    "city": "London"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 770,
+                    "name": "Czech Republic",
+                    "logo": "https://media.api-sports.io/football/teams/770.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 10,
+                    "name": "England",
+                    "logo": "https://media.api-sports.io/football/teams/10.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657706,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-23T16:00:00+00:00",
+                "timestamp": 1624464000,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1970,
+                    "name": "Aviva Stadium",
+                    "city": "Dublin"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 5,
+                    "name": "Sweden",
+                    "logo": "https://media.api-sports.io/football/teams/5.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 24,
+                    "name": "Poland",
+                    "logo": "https://media.api-sports.io/football/teams/24.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657707,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-23T16:00:00+00:00",
+                "timestamp": 1624464000,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 1460,
+                    "name": "San Mamés Barria",
+                    "city": "Bilbao"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 773,
+                    "name": "Slovakia",
+                    "logo": "https://media.api-sports.io/football/teams/773.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 9,
+                    "name": "Spain",
+                    "logo": "https://media.api-sports.io/football/teams/9.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657708,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-23T19:00:00+00:00",
+                "timestamp": 1624474800,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": null,
+                    "name": null,
+                    "city": null
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 27,
+                    "name": "Portugal",
+                    "logo": "https://media.api-sports.io/football/teams/27.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 2,
+                    "name": "France",
+                    "logo": "https://media.api-sports.io/football/teams/2.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        },
+        {
+            "fixture": {
+                "id": 657709,
+                "referee": null,
+                "timezone": "UTC",
+                "date": "2021-06-23T19:00:00+00:00",
+                "timestamp": 1624474800,
+                "periods": {
+                    "first": null,
+                    "second": null
+                },
+                "venue": {
+                    "id": 700,
+                    "name": "Allianz Arena",
+                    "city": "München"
+                },
+                "status": {
+                    "long": "Not Started",
+                    "short": "NS",
+                    "elapsed": null
+                }
+            },
+            "league": {
+                "id": 4,
+                "name": "Euro Championship",
+                "country": "World",
+                "logo": "https://media.api-sports.io/football/leagues/4.png",
+                "flag": null,
+                "season": 2020,
+                "round": "Group Stage - 3"
+            },
+            "teams": {
+                "home": {
+                    "id": 25,
+                    "name": "Germany",
+                    "logo": "https://media.api-sports.io/football/teams/25.png",
+                    "winner": null
+                },
+                "away": {
+                    "id": 769,
+                    "name": "Hungary",
+                    "logo": "https://media.api-sports.io/football/teams/769.png",
+                    "winner": null
+                }
+            },
+            "goals": {
+                "home": null,
+                "away": null
+            },
+            "score": {
+                "halftime": {
+                    "home": null,
+                    "away": null
+                },
+                "fulltime": {
+                    "home": null,
+                    "away": null
+                },
+                "extratime": {
+                    "home": null,
+                    "away": null
+                },
+                "penalty": {
+                    "home": null,
+                    "away": null
+                }
+            }
+        }
+    ]
+}
