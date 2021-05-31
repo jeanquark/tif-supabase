@@ -1,5 +1,5 @@
 // import { supabase } from "../../lib/initSupabase"
-import { supabase } from "../../utils/supabaseClient"
+import { supabase } from "../../lib/initSupabase"
 
 export default async function registerUser(req, res) {
 	console.log('/api/register req.body: ', req.body)

@@ -1,4 +1,4 @@
-import { supabase } from "../../utils/supabaseClient";
+import { supabase } from "../../lib/initSupabase";
 
 export default async function registerUser(req, res) {
 	const { email, password } = req.body;
