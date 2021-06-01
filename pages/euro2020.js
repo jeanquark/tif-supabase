@@ -198,8 +198,8 @@ export default function euro2020() {
                                                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                                                         <CardMedia className={classes.media} title="Flags">
                                                             <div className={classes.flag}>
-                                                                <Avatar variant="square" alt="Country flag" src={fixture.home_team_image} />
-                                                                <Avatar variant="square" alt="Country flag" src={fixture.visitor_team_image} className={classes.small} />
+                                                                <Avatar variant="square" alt="Country flag" src={`/images/countries_euro2020/${fixture.home_team_image}`} />
+                                                                <Avatar variant="square" alt="Country flag" src={`/images/countries_euro2020/${fixture.visitor_team_image}`} className={classes.small} />
                                                             </div>
                                                         </CardMedia>
                                                     </div>

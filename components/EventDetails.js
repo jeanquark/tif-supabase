@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     large: {
         width: theme.spacing(10),
@@ -87,9 +87,9 @@ export default function EventDetails() {
         <Box>
             <Box display="flex" style={{ margin: 10, padding: 8 }}>
                 <Box m="auto">
-                    <Box className={classes.avatar}>
-                        <img src={`/images/countries_euro2020/${event.home_team_id}.png`} height="60" style={{ marginRight: '10px' }} />
-                        <img src={`/images/countries_euro2020/${event.visitor_team_id}.png`} height="60" style={{ marginLeft: '10px' }} />
+                    <Box mb={2} className={classes.avatar}>
+                        <img src={`/images/countries_euro2020/${event.home_team_image}`} height="60" style={{ marginRight: '10px' }} />
+                        <img src={`/images/countries_euro2020/${event.visitor_team_image}`} height="60" style={{ marginLeft: '10px' }} />
                     </Box>
                     <Typography variant="h5" align="center">
                         {event.home_team_name} - {event.visitor_team_name}

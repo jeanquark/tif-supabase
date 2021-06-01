@@ -7,12 +7,14 @@ import { Auth } from '@supabase/ui'
 import moment from 'moment'
 import AppBar from '@material-ui/core/AppBar'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
 import Fab from '@material-ui/core/Fab'
 import List from '@material-ui/core/List'
+import AvatarGroup from '@material-ui/lab/AvatarGroup'
 import Avatar from '@material-ui/core/Avatar'
 import MenuIcon from '@material-ui/icons/Menu'
 import AddIcon from '@material-ui/icons/Add'
@@ -22,6 +24,7 @@ import Box from '@material-ui/core/Box'
 import Tooltip from '@material-ui/core/Tooltip'
 import ActionCard from './ActionCard'
 import UserContext from '../store/userContext'
+import ActionsContext from '../store/actionsContext'
 
 const useStyles = makeStyles((theme) => ({
     text: {
@@ -54,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     fabButton: {
         position: 'absolute',
         zIndex: 1,
-        top: -30,
+        top: -25,
         left: 0,
         right: 0,
         margin: '0 auto',
@@ -65,9 +68,10 @@ export default function ActionList() {
     const classes = useStyles()
     // const { user } = Auth.useUser()
     const { user } = useContext(UserContext)
+    const { actions } = useContext(ActionsContext)
     const router = useRouter()
     const { id } = router.query
-    const [actions, setActions] = useState([])
+    // const [actions, setActions] = useState([])
     const [eventActions, setEventActions] = useState([])
     const [eventUsers, setEventUsers] = useState([])
     const [updateAction, handleUpdateAction] = useState('')
@@ -84,8 +88,6 @@ export default function ActionList() {
     useEffect(() => {
         try {
             console.log('[useEffect] getActionsAndSubscribe() id: ', id)
-            // console.log('[useEffect] getActionsAndSubscribe() actions: ', actions)
-            // console.log('[useEffect] getActionsAndSubscribe() eventUsers: ', eventUsers)
             if (id != undefined) {
                 getActionsAndSubscribe(id)
             }
@@ -103,10 +105,10 @@ export default function ActionList() {
         }
     }, [id])
 
-    useEffect(() => {
-        console.log('[useEffect] fetchActions()')
-        fetchActions()
-    }, [])
+    // useEffect(() => {
+    //     console.log('[useEffect] fetchActions()')
+    //     fetchActions()
+    // }, [])
 
     useEffect(() => {
         try {
@@ -253,16 +255,16 @@ export default function ActionList() {
         }
     }
 
-    const fetchActions = async () => {
-        try {
-            const { data, error } = await supabase.from('actions').select('*').order('id', true)
-            console.log('data: ', data)
-            if (error) console.log('error: ', error)
-            else setActions(data)
-        } catch (error) {
-            console.log('error: ', error)
-        }
-    }
+    // const fetchActions = async () => {
+    //     try {
+    //         const { data, error } = await supabase.from('actions').select('*').order('id', true)
+    //         console.log('data: ', data)
+    //         if (error) console.log('error: ', error)
+    //         else setActions(data)
+    //     } catch (error) {
+    //         console.log('error: ', error)
+    //     }
+    // }
 
     const calculateParticipationThreshold = () => {
         console.log('calculateParticipationThreshold eventUsers: ', eventUsers)
@@ -307,14 +309,13 @@ export default function ActionList() {
             <br />
             <Box display="flex" style={{ border: '1px solid orange' }}>
                 <h3>Event users:</h3>
-                {eventUsers.map((eventUser) => (
-                    <Tooltip title={eventUser.users.username} key={eventUser.id}>
-                        <Avatar alt={eventUser.users.username} src={`/images/avatar.png`} />
-                    </Tooltip>
-                ))}
-                <Tooltip title="jeanquark">
-                    <Avatar alt="jeanquark" src={`/images/avatar.png`} />
-                </Tooltip>
+                <AvatarGroup max={4}>
+                    {eventUsers.map((eventUser) => (
+                        <Tooltip title={eventUser.users?.username} key={eventUser.id}>
+                            <Avatar alt={eventUser.users.username} src={`/images/avatar.png`} />
+                        </Tooltip>
+                    ))}
+                </AvatarGroup>
             </Box>
             <h3>Choose action:</h3>
             <Box display="flex" style={{ border: '1px solid red' }}>
@@ -341,7 +342,17 @@ export default function ActionList() {
                 </Paper>
                 <AppBar position="sticky" color="primary" className={classes.appBar}>
                     <Toolbar variant="dense">
-                        <IconButton edge="start" color="inherit" aria-label="open drawer">
+                        {!user && 'Login to participate'}
+                        <Fab color="secondary" size="medium" aria-label="add" className={classes.fabButton}>
+                            <AddIcon />
+                        </Fab>
+                        <div className={classes.grow} />
+                        <IconButton edge="end" color="inherit">
+                            <SearchIcon />
+                        </IconButton>
+
+
+                        {/* <IconButton edge="start" color="inherit" aria-label="open drawer">
                             <MenuIcon />
                         </IconButton>
                         <Fab color="secondary" size="medium" aria-label="add" className={classes.fabButton}>
@@ -353,7 +364,7 @@ export default function ActionList() {
                         </IconButton>
                         <IconButton edge="end" color="inherit">
                             <MoreIcon />
-                        </IconButton>
+                        </IconButton> */}
                     </Toolbar>
                 </AppBar>
             </Box>

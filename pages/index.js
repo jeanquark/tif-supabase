@@ -120,15 +120,13 @@ export default function index() {
 					</Grid>
 					<Grid container justify="center" alignItems="flex-end">
 						<p>tif-supabase<br />
-							Last deployment time: Tuesday June 1st, 13:43.</p>
+							Last deployment time: Tuesday June 1st, 16:03.</p>
 					</Grid>
 				</Grid>
 				<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-					{/* {user ? <div>You are logged in!</div> : ( */}
 					{showLoginForm ? <Login setShowLoginForm={setShowLoginForm} /> :
 						<Register setShowLoginForm={setShowLoginForm} />
 					}
-					{/* )} */}
 				</Grid>
 			</Grid>
 		</>
