@@ -119,7 +119,7 @@ export default function index() {
 						</Grid>
 					</Grid>
 					<Grid container justify="center" alignItems="flex-end">
-						<p>Last deployment time: Monday June 1st, 10:18.</p>
+						<p>Last deployment time: Monday June 1st, 10:24.</p>
 					</Grid>
 				</Grid>
 				<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
