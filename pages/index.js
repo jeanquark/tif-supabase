@@ -119,7 +119,8 @@ export default function index() {
 						</Grid>
 					</Grid>
 					<Grid container justify="center" alignItems="flex-end">
-						<p>Last deployment time: Monday June 1st, 11:00.</p>
+						<p>tif-supabase<br />
+							Last deployment time: Tuesday June 1st, 13:32.</p>
 					</Grid>
 				</Grid>
 				<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>

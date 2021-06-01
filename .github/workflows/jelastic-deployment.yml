@@ -92,16 +92,16 @@ jobs:
               run: npm install
             - name: 🔨 Build
               run: npm run build
-            # - name: 🐆 Deploy new releases version folder to server
-            #   uses: easingthemes/ssh-deploy@v2.1.5
-            #   env:
-            #       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            #       REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-            #       REMOTE_USER: ${{ secrets.SERVER_USERNAME }}
-            #       REMOTE_PORT: 3022
-            #       SOURCE: './releases/'
-            #       TARGET: '/home/jelastic/ROOT/releases/'
-            #       ARGS: '-rltgoDzvO --exclude .git --exclude .github --exclude node_modules --exclude ecosystem.config.js'
+            - name: 🐆 Deploy new releases version folder to server
+              uses: easingthemes/ssh-deploy@v2.1.5
+              env:
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                  REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+                  REMOTE_USER: ${{ secrets.SERVER_USERNAME }}
+                  REMOTE_PORT: 3022
+                  SOURCE: './releases/'
+                  TARGET: '/home/jelastic/ROOT/releases/'
+                  ARGS: '-rltgoDzvO --exclude .git --exclude .github --exclude node_modules --exclude ecosystem.config.js'
             - name: 🐢 Deploy files and folders (except node_modules) to new releases version folder
               uses: easingthemes/ssh-deploy@v2.1.5
               env:
