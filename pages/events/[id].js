@@ -10,7 +10,6 @@ import MessageList from '../../components/MessageList'
 import ActionList from '../../components/ActionList'
 import Navbar from '../../components/Navbar'
 import { Container, Grid, AppBar, Toolbar, Box, Button, Typography, IconButton, Menu, MenuItem } from '@material-ui/core'
-import { ActionsContextProvider } from '../../store/actionsContext'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,7 +52,7 @@ const Event = () => {
 
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
-                <ActionsContextProvider>
+                
                     <Container maxWidth="lg" className={classes.container}>
                         <Grid container spacing={0}>
                             <Grid item xs={12} sm={6}>
@@ -66,7 +65,6 @@ const Event = () => {
                             </Grid>
                         </Grid>
                     </Container>
-                </ActionsContextProvider>
             </main>
         </div>
     )

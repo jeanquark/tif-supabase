@@ -3,11 +3,13 @@ import useSWR from 'swr'
 import { Auth } from '@supabase/ui'
 import { supabase } from '../lib/initSupabase'
 import { useEffect, useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Login from '../components/Login'
 import Register from '../components/Register'
+import Snackbar from '../components/Snackbar'
 
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -20,7 +22,6 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -63,6 +64,8 @@ export default function index() {
 	const router = useRouter()
 	const { user, session } = Auth.useUser()
 	const [showLoginForm, setShowLoginForm] = useState(true)
+	// const [snackbar, setSnackbar] = useState({ open: false })
+	const [open, setOpen] = useState(false);
 
 	const { data, error } = useSWR(session ? ['/api/getUser', session.access_token] : null, fetcher)
 	const [authView, setAuthView] = useState('sign_in')
@@ -100,6 +103,14 @@ export default function index() {
 		}
 	}, [])
 
+	const handleClick = () => {
+        // setSnackbar({
+		// 	open: true,
+		// 	message: 'Hello from Jean-Marc!'
+		// })
+		setOpen(true);
+    }
+
 	return (
 		<>
 			<Head>
@@ -128,6 +139,8 @@ export default function index() {
 						<Register setShowLoginForm={setShowLoginForm} />
 					}
 				</Grid>
+				<Button onClick={handleClick}>Open simple snackbar</Button>
+				<Snackbar open={open} message={'Hello from Jean-Marc!'} />
 			</Grid>
 		</>
 	)

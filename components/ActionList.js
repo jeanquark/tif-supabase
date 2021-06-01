@@ -92,9 +92,11 @@ export default function ActionList() {
                 getActionsAndSubscribe(id)
             }
             return async () => {
+                // 1) Remove subscription
                 const { data } = await supabase.removeSubscription(mySubscription)
                 console.log('[useEffect] Remove supabase subscription by useEffect unmount. data: ', data)
-                // Remove user from event_users table
+
+                // 2) Remove user from event_users table
                 console.log('[useEffect] userRef.current: ', actionsRef.current)
                 if (userRef.current) {
                     await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: null }, { onConflict: 'user_id' })
@@ -169,6 +171,7 @@ export default function ActionList() {
             console.log('getActionsAndSubscribe() id: ', id)
             await getInitialActions(id)
 
+            console.log('mySubscription: ', mySubscription)
             if (!mySubscription) {
                 mySubscription = supabase
                     .from(`event_actions:event_id=eq.${id}`)
@@ -196,7 +199,6 @@ export default function ActionList() {
                         handleUpdateAction(payload.new)
                     })
                     .subscribe()
-                // console.log('mySubscription: ', mySubscription)
             } else {
                 supabase.removeSubscription(mySubscription)
                 console.log('Delete message')
@@ -209,8 +211,6 @@ export default function ActionList() {
     const getInitialActions = async (id) => {
         try {
             console.log('getInitialActions() id: ', id)
-            // console.log('getInitialActions() userRef.current: ', userRef.current)
-            // console.log('getInitialActions() useContext(UserContext): ', useContext(UserContext))
             if (!eventActions.length) {
                 // 1) Retrieve event actions
                 const { data: actions, error: errorActions } = await supabase
@@ -226,7 +226,7 @@ export default function ActionList() {
                     mySubscription = null
                     return
                 }
-                console.log('actions: ', actions)
+                // console.log('actions: ', actions)
                 setEventActions(actions)
 
                 // 2) Add user to event
@@ -311,8 +311,8 @@ export default function ActionList() {
                 <h3>Event users:</h3>
                 <AvatarGroup max={4}>
                     {eventUsers.map((eventUser) => (
-                        <Tooltip title={eventUser.users?.username} key={eventUser.id}>
-                            <Avatar alt={eventUser.users.username} src={`/images/avatar.png`} />
+                        <Tooltip title="abc" key={eventUser.id}>
+                            <Avatar alt="def" src={`/images/avatar.png`} />
                         </Tooltip>
                     ))}
                 </AvatarGroup>

@@ -148,7 +148,7 @@ export default function Register(props) {
             }
             console.log('user: ', user)
             console.log('session: ', session)
-            router.push('/euro2020')
+            props.setShowLoginForm(true)
         } catch (error) {
             console.log('error: ', error)
         }

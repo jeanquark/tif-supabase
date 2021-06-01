@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     listItem: {
         '&:hover': {
-            background: 'yellow'
+            cursor: 'default'
         }
     },
     '@keyframes timeOutAnimation': {
@@ -146,7 +146,7 @@ export default function ActionCard(props) {
 
     return (
         <React.Fragment>
-            <ListItem className={classes.listItem}>
+            <ListItem button className={classes.listItem}>
                 <ListItemAvatar>
                     <Avatar alt="Profile Picture" src={`/images/actions/${eventAction.actions?.image}`} />
                 </ListItemAvatar>

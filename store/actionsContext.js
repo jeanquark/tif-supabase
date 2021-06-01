@@ -10,7 +10,10 @@ export function ActionsContextProvider(props) {
 
     useEffect(async () => {
         console.log('[actionsContext] useEffect ActionsContextProvider')
-        setActionsHandler()
+        if (actions.length < 1) {
+
+            setActionsHandler()
+        }
     }, [])
 
     async function setActionsHandler() {

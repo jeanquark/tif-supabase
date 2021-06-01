@@ -9,6 +9,7 @@ import { supabase } from '../lib/initSupabase'
 // import { TestWrapper } from '../store/test-context'
 // import { UserWrapper } from '../store/userContext'
 import { UserContextProvider } from '../store/userContext'
+import { ActionsContextProvider } from '../store/actionsContext'
 
 export default function MyApp(props) {
     const { Component, pageProps } = props
@@ -38,7 +39,9 @@ export default function MyApp(props) {
                     <CssBaseline />
                     {/* <UserWrapper supabaseClient={supabase}> */}
                     <UserContextProvider supabase={supabase}>
-                        <Component {...pageProps} />
+                        <ActionsContextProvider>
+                            <Component {...pageProps} />
+                        </ActionsContextProvider>
                     </UserContextProvider>
                     {/* </UserWrapper> */}
                 </ThemeProvider>
