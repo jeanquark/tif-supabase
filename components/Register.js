@@ -2,7 +2,7 @@ import React from 'react'
 import useSWR from 'swr'
 import { Auth } from '@supabase/ui'
 import { supabase } from '../lib/initSupabase'
-import { useEffect, useState } from 'react'
+import { useState, useContext } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -20,6 +20,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import { ErrorSharp } from '@material-ui/icons'
+import SnackbarContext from '../store/snackbarContext'
 
 function Copyright() {
     return (
@@ -90,6 +91,7 @@ export default function Register(props) {
             message: '',
         },
     })
+    const { snackbar, setSnackbar } = useContext(SnackbarContext)
 
     async function signUpUser(event) {
         try {
@@ -148,6 +150,11 @@ export default function Register(props) {
             }
             console.log('user: ', user)
             console.log('session: ', session)
+            setSnackbar({
+                open: true,
+                message: 'Account created! Please check your mail box for the confirmation message.',
+                severity: 'success'
+            })
             props.setShowLoginForm(true)
         } catch (error) {
             console.log('error: ', error)

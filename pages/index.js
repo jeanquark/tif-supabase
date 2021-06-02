@@ -2,7 +2,7 @@ import React from 'react'
 import useSWR from 'swr'
 import { Auth } from '@supabase/ui'
 import { supabase } from '../lib/initSupabase'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import Snackbar from '../components/Snackbar'
+import SnackbarContext from '../store/snackbarContext'
 
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -63,12 +64,13 @@ export default function index() {
 	const classes = useStyles()
 	const router = useRouter()
 	const { user, session } = Auth.useUser()
-	const [showLoginForm, setShowLoginForm] = useState(true)
-	// const [snackbar, setSnackbar] = useState({ open: false })
-	const [open, setOpen] = useState(false);
-
-	const { data, error } = useSWR(session ? ['/api/getUser', session.access_token] : null, fetcher)
+	const { data, error } = useSWR(session ? ['/api/getUser', session.access_token] : null, fetcher) 
 	const [authView, setAuthView] = useState('sign_in')
+	const [showLoginForm, setShowLoginForm] = useState(true)
+	const { snackbar, setSnackbar } = useContext(SnackbarContext)
+	const [open, setOpen] = useState(false);
+	// const [snackbar, setSnackbar] = useState({ open: false })
+
 
 	// useEffect(() => {
 	// console.log('useEffect user.id: ', user?.id)
@@ -98,18 +100,16 @@ export default function index() {
 			// })
 		})
 
+		setSnackbar({
+			open: true,
+			message: 'Welcome to ThisIsFan!',
+			severity: 'success'
+		})
+
 		return () => {
 			authListener.unsubscribe()
 		}
 	}, [])
-
-	const handleClick = () => {
-        // setSnackbar({
-		// 	open: true,
-		// 	message: 'Hello from Jean-Marc!'
-		// })
-		setOpen(true);
-    }
 
 	return (
 		<>
@@ -139,8 +139,8 @@ export default function index() {
 						<Register setShowLoginForm={setShowLoginForm} />
 					}
 				</Grid>
-				<Button onClick={handleClick}>Open simple snackbar</Button>
-				<Snackbar open={open} message={'Hello from Jean-Marc!'} />
+				{/* <Button onClick={handleClick}>Open simple snackbar</Button> */}
+				{/* <Snackbar open={open} message={'Hello from Jean-Marc!'} /> */}
 			</Grid>
 		</>
 	)

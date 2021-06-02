@@ -4,12 +4,12 @@ import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
+import Snackbar from '../components/Snackbar'
 import { Auth } from '@supabase/ui'
 import { supabase } from '../lib/initSupabase'
-// import { TestWrapper } from '../store/test-context'
-// import { UserWrapper } from '../store/userContext'
 import { UserContextProvider } from '../store/userContext'
 import { ActionsContextProvider } from '../store/actionsContext'
+import { SnackbarContextProvider } from '../store/snackbarContext'
 
 export default function MyApp(props) {
     const { Component, pageProps } = props
@@ -37,13 +37,14 @@ export default function MyApp(props) {
                 <ThemeProvider theme={theme}>
                     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
-                    {/* <UserWrapper supabaseClient={supabase}> */}
                     <UserContextProvider supabase={supabase}>
-                        <ActionsContextProvider>
-                            <Component {...pageProps} />
-                        </ActionsContextProvider>
+                        <SnackbarContextProvider>
+                            <ActionsContextProvider>
+                                <Component {...pageProps} />
+                                <Snackbar />
+                            </ActionsContextProvider>
+                        </SnackbarContextProvider>
                     </UserContextProvider>
-                    {/* </UserWrapper> */}
                 </ThemeProvider>
             </Auth.UserContextProvider>
         </React.Fragment>

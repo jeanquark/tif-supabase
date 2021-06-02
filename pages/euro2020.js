@@ -92,6 +92,7 @@ export default function euro2020() {
     const [nextFixtures, setNextFixtures] = useState([])
     const [standingsByGroup, setStandingsByGroup] = useState([[]])
     const [country, setCountry] = useState('europe-uefa-euro2020')
+    const [updateEvent, handleUpdateEvent] = useState([])
 
     useEffect(() => {
         fetchFixtures()
@@ -99,6 +100,28 @@ export default function euro2020() {
     useEffect(() => {
         fetchStandings()
     }, [])
+
+    useEffect(() => {
+        try {
+            console.log('[useEffect] updateEvent: ', updateEvent)
+            if (updateEvent) {
+                const index = fixtures.findIndex((a) => a.id == updateEvent.id)
+                console.log('index: ', index)
+                if (index != -1) {
+                    // 1) Update fixtures array
+                    let newFixtures = [...fixtures]
+                    console.log('newFixtures: ', newFixtures)
+                    newFixtures[index] = updateEvent
+                    setFixtures(newFixtures)
+
+                    // 2) Update fixturesByGroup object
+                    updateFixturesByGroup(newFixtures)
+                }
+            }
+        } catch (error) {
+            console.log('error: ', error)
+        }
+    }, [updateEvent])
 
     const fetchFixtures = async () => {
         let { data: fixtures, error } = await supabase.from('events').select('*').eq('league_id', 4).order('date', true)
@@ -109,11 +132,6 @@ export default function euro2020() {
             const nextFixtures = fixtures.filter((fixture) => moment(fixture.date).format('YYYY-MM-DD') >= moment().utc().format('YYYY-MM-DD')).slice(0, 3)
             console.log('nextFixtures: ', nextFixtures)
             setNextFixtures(nextFixtures)
-            // const abc = moment(nextFixtures[0]['date']).format('YYYY-MM-DD')
-            // console.log('abc: ', abc)
-            // const def = moment().utc().format('YYYY-MM-DD')
-            // console.log('def: ', def)
-            // console.log('diff: ', abc < def)
             const array = [[]]
             let index
             const groupIndexHashObject = {
@@ -135,6 +153,17 @@ export default function euro2020() {
             // console.log('array: ', array)
             setFixturesByGroup(array)
             // console.log('fixturesByGroup: ', fixturesByGroup)
+            // subscribeToFixtures()
+            const mySubscription = supabase
+                .from(`events:league_id=eq.4`)
+                .on('UPDATE', (payload) => {
+                    console.log('UPDATE: ', payload)
+                    // console.log('fixtures: ', fixtures)
+                    // console.log('fixturesByGroup: ', fixturesByGroup)
+                    handleUpdateEvent(payload.new)
+                })
+                .subscribe()
+            console.log('mySubscription: ', mySubscription)
         }
     }
 
@@ -161,6 +190,41 @@ export default function euro2020() {
         }
     }
 
+    const subscribeToFixtures = () => {
+        const mySubscription = supabase
+            .from(`events`)
+            .on('UPDATE', (payload) => {
+                console.log('UPDATE: ', payload)
+                console.log('fixtures: ', fixtures)
+            })
+            .subscribe()
+        console.log('mySubscription: ', mySubscription)
+    }
+
+    const updateFixturesByGroup = (fixtures) => {
+        // console.log('fixturesByGroup2: ', fixtures)
+        const array = [[]]
+        let index
+        const groupIndexHashObject = {
+            A: 0,
+            B: 1,
+            C: 2,
+            D: 3,
+            E: 4,
+            F: 5,
+        }
+        for (let i = 0; i < fixtures.length; i++) {
+            index = groupIndexHashObject[fixtures[i]['group_name']]
+            if (!array[index]) {
+                array[index] = []
+            }
+            array[index].push(fixtures[i])
+        }
+        console.log('array: ', array)
+        setFixturesByGroup(array)
+        return array
+    }
+
     const redirectTo = (link) => {
         console.log('redirectTo: ', link)
         router.push(`/events/${link}`)
@@ -185,9 +249,13 @@ export default function euro2020() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
+                    Home Team name: <ul>
+                        {fixtures.map((fixture) => (
+                            <li key={fixture.id}>{fixture.home_team_name}</li>
+                        ))}
+                    </ul>
                     <Grid container alignItems="center" justify="center" className={classes.root} style={{ paddingTop: '0px', marginTop: '0px', border: '2px solid red' }}>
                         <Grid container item style={{ border: '2px solid green' }}>
-                            {/* <Grid item > */}
                             <Grid container item direction="column" justify="space-around" sm={12} md={3} style={{ border: '2px solid pink' }}>
                                 <Typography variant="h5" className={classes.typography}>Next fixtures</Typography>
                                 {nextFixtures.map((fixture) => (
@@ -221,7 +289,6 @@ export default function euro2020() {
                                     </Box>
                                 ))}
                             </Grid>
-                            {/* </Grid> */}
 
                             <Grid item sm={12} md={9} align="right">
                                 <DynamicComponent style={{}} />
