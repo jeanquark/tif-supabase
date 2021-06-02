@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
             marginLeft: theme.spacing(1),
             marginRight: theme.spacing(1),
             width: theme.spacing(7),
-            height: theme.spacing(4),
+            height: theme.spacing(5),
         },
     },
     media: {
@@ -124,6 +124,7 @@ export default function euro2020() {
     }, [updateEvent])
 
     const fetchFixtures = async () => {
+        console.log('fetchFixtures')
         let { data: fixtures, error } = await supabase.from('events').select('*').eq('league_id', 4).order('date', true)
         if (error) console.log('error', error)
         else {
@@ -144,22 +145,16 @@ export default function euro2020() {
             }
             for (let i = 0; i < fixtures.length; i++) {
                 index = groupIndexHashObject[fixtures[i]['group_name']]
-                // console.log('index: ', index)
                 if (!array[index]) {
                     array[index] = []
                 }
                 array[index].push(fixtures[i])
             }
-            // console.log('array: ', array)
             setFixturesByGroup(array)
-            // console.log('fixturesByGroup: ', fixturesByGroup)
-            // subscribeToFixtures()
             const mySubscription = supabase
                 .from(`events:league_id=eq.4`)
                 .on('UPDATE', (payload) => {
                     console.log('UPDATE: ', payload)
-                    // console.log('fixtures: ', fixtures)
-                    // console.log('fixturesByGroup: ', fixturesByGroup)
                     handleUpdateEvent(payload.new)
                 })
                 .subscribe()
@@ -249,11 +244,6 @@ export default function euro2020() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                    Home Team name: <ul>
-                        {fixtures.map((fixture) => (
-                            <li key={fixture.id}>{fixture.home_team_name}</li>
-                        ))}
-                    </ul>
                     <Grid container alignItems="center" justify="center" className={classes.root} style={{ paddingTop: '0px', marginTop: '0px', border: '2px solid red' }}>
                         <Grid container item style={{ border: '2px solid green' }}>
                             <Grid container item direction="column" justify="space-around" sm={12} md={3} style={{ border: '2px solid pink' }}>

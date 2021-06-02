@@ -268,7 +268,7 @@ export default function ActionList() {
 
     const calculateParticipationThreshold = () => {
         console.log('calculateParticipationThreshold eventUsers: ', eventUsers)
-        if (eventUsers.length < 2) {
+        if (eventUsers.length <= 2) {
             return 2
         }
         return eventUsers.length * 0.5
