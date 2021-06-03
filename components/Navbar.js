@@ -248,12 +248,12 @@ export default function Navbar() {
 				</div>
 				<Divider />
 				<List>
-					{user && <ListItem>
+					{/* {user && <ListItem>
 						<ListItemIcon>
 							<Avatar alt={user.email} src="/images/avatar.png" className={classes.small} />
 						</ListItemIcon>
 						<ListItemText><Button variant="outlined" color="primary" size="small" onClick={handleLogout}>Logout</Button></ListItemText>
-					</ListItem>}
+					</ListItem>} */}
 					<Link href="/" passHref>
 						<ListItem button component="a">
 							<ListItemIcon>

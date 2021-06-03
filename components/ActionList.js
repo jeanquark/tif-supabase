@@ -75,6 +75,7 @@ export default function ActionList() {
     const [eventActions, setEventActions] = useState([])
     const [eventUsers, setEventUsers] = useState([])
     const [updateAction, handleUpdateAction] = useState('')
+    const [updateEventUsers, handleUpdateEventUsers] = useState('')
     const [joinAction, handleJoinAction] = useState('')
     const [deleteAction, handleDeleteAction] = useState('')
     const userRef = useRef()
@@ -83,7 +84,8 @@ export default function ActionList() {
     userRef.current = user
     actionsRef.current = actions
     eventUsersRef.current = eventUsers
-    let mySubscription = null
+    let subscriptionEventActions = null
+    let subscriptionEventUsers = null
 
     useEffect(() => {
         try {
@@ -93,12 +95,13 @@ export default function ActionList() {
             }
             return async () => {
                 // 1) Remove subscription
-                const { data } = await supabase.removeSubscription(mySubscription)
+                const { data } = await supabase.removeSubscription(subscriptionEventActions)
                 console.log('[useEffect] Remove supabase subscription by useEffect unmount. data: ', data)
 
                 // 2) Remove user from event_users table
                 console.log('[useEffect] userRef.current: ', actionsRef.current)
                 if (userRef.current) {
+                    // await supabase.from('event_users').upsert({ user_id: userRef.current.id, joined_at: null, left_at: moment().utc() }, { onConflict: 'user_id' })
                     await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: null }, { onConflict: 'user_id' })
                 }
             }
@@ -166,17 +169,36 @@ export default function ActionList() {
         }
     }, [deleteAction])
 
+    useEffect(() => {
+        try {
+            console.log('[useEffect] updateEventUsers: ', updateEventUsers)
+            if (updateEventUsers) {
+                console.log('eventUsers: ', eventUsers)
+                const index = eventUsers.findIndex((a) => a.id == updateEventUsers.id)
+                console.log('index: ', index)
+                if (index == -1) {
+                    let newEventUsers = [...eventUsers]
+                    newEventUsers.push(updateEventUsers)
+                    console.log('newEventUsers: ', newEventUsers)
+                    setEventUsers(newEventUsers)
+                }
+            }
+        } catch (error) {
+            console.log('error: ', error)
+        }
+    }, [updateEventUsers])
+
     const getActionsAndSubscribe = async (id) => {
         try {
             console.log('getActionsAndSubscribe() id: ', id)
             await getInitialActions(id)
 
-            console.log('mySubscription: ', mySubscription)
-            if (!mySubscription) {
-                mySubscription = supabase
+            // 1) Subscribe to event_actions
+            if (!subscriptionEventActions) {
+                subscriptionEventActions = supabase
                     .from(`event_actions:event_id=eq.${id}`)
                     .on('INSERT', (payload) => {
-                        console.log('INSERT payload.new: ', payload.new)
+                        console.log('[INSERT] subscriptionEventActions payload.new: ', payload.new)
                         const action = actionsRef.current.find((action) => action.id == payload.new.action_id)
                         const user = eventUsersRef.current.find((eventUser) => eventUser.user_id == payload.new.user_id)
                         // console.log('INSERT action: ', action)
@@ -187,21 +209,49 @@ export default function ActionList() {
                                 image: action.image,
                             },
                             users: {
-                                username: user.users?.username,
+                                // username: user.users?.username,
+                                username: 'jeanquark'
                             },
                             ...payload.new,
                         }
                         setEventActions((a) => [...a, newEventAction])
                     })
                     .on('UPDATE', (payload) => {
-                        console.log('UPDATE: ', payload.new)
+                        console.log('[UPDATE] subscriptionEventActions: ', payload.new)
                         // console.log('actions: ', actions)
                         handleUpdateAction(payload.new)
                     })
                     .subscribe()
             } else {
-                supabase.removeSubscription(mySubscription)
-                console.log('Delete message')
+                supabase.removeSubscription(subscriptionEventActions)
+            }
+
+            // 2) Subscribe to event users
+            if (!subscriptionEventUsers) {
+                console.log('Subscribe to event_users')
+                subscriptionEventUsers = supabase
+                    .from('event_users')
+                    // .from(`event_users:event_id=eq.${id}`)
+                    .on('*', (payload) => {
+                        console.log('[*] subscriptionEventUsers: ', payload.new)
+                        // handleUpdateEventUsers(payload.new)
+                    })
+                    .on('UPDATE', (payload) => {
+                        console.log('[UPDATE] subscriptionEventUsers: ', payload.new)
+                        // handleUpdateEventUsers(payload.new)
+                    })
+                    .on('INSERT', (payload) => {
+                        console.log('[INSERT] subscriptionEventUsers: ', payload.new)
+                        // handleUpdateEventUsers(payload.new)
+                    })
+                    .on('DELETE', (payload) => {
+                        console.log('[DELETE] subscriptionEventUsers: ', payload.new)
+                        // handleUpdateEventUsers(payload.new)
+                    })
+                    .subscribe()
+                console.log('subscriptionEventUsers: ', subscriptionEventUsers)
+            } else {
+                supabase.removeSubscription(subscriptionEventUsers)
             }
         } catch (error) {
             console.log('error: ', error)
@@ -222,8 +272,8 @@ export default function ActionList() {
                     .order('id', { ascending: true })
                 if (errorActions) {
                     console.log('error: ', errorActions)
-                    supabase.removeSubscription(mySubscription)
-                    mySubscription = null
+                    supabase.removeSubscription(subscriptionEventActions)
+                    subscriptionEventActions = null
                     return
                 }
                 // console.log('actions: ', actions)
@@ -231,10 +281,12 @@ export default function ActionList() {
 
                 // 2) Add user to event
                 if (userRef.current) {
+                    // await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id, joined_at: moment().utc(), left_at: null }, { onConflict: 'user_id' })
                     await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id }, { onConflict: 'user_id' })
                 }
 
                 // 3) Retrieve event users
+                // const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, users (username, image)').eq('event_id', id).not('joined_at', 'is', null)
                 const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, users (username, image)').eq('event_id', id)
                 if (errorUsers) console.log('error: ', errorUsers)
                 setEventUsers(users)
@@ -287,15 +339,27 @@ export default function ActionList() {
                 return
             }
             console.log('user.id: ', user.id)
-            const { data, error } = await supabase
+
+            // 1) Add action to list of event actions
+            const { data: newEventAction, error: error1 } = await supabase
                 .from('event_actions')
                 .insert([{ event_id: id, user_id: user.id, action_id: actionId, points: 10, participation_threshold: calculateParticipationThreshold(), expired_at: calculateExpirationTime() }])
-
-            if (error) {
-                alert(error.message)
-                return
+            if (error1) {
+                throw error1
             }
-            console.log('data: ', data)
+            console.log('newEventAction: ', newEventAction)
+
+            // 2) Add user to list of event actions users
+            const { error: error2 } = await supabase.from('event_actions_users').insert([
+                {
+                    event_action_id: newEventAction[0].id,
+                    user_id: user.id
+                },
+            ])
+            if (error2) {
+                console.log('error2: ', error2)
+                throw error2
+            }
             console.log('Successfully created action!')
         } catch (error) {
             console.log('error: ', error)
@@ -309,13 +373,13 @@ export default function ActionList() {
             <br />
             <Box display="flex" style={{ border: '1px solid orange' }}>
                 <h3>Event users:</h3>
-                <AvatarGroup max={4}>
-                    {eventUsers.map((eventUser) => (
-                        <Tooltip title="abc" key={eventUser.id}>
-                            <Avatar alt="def" src={`/images/avatar.png`} />
-                        </Tooltip>
-                    ))}
-                </AvatarGroup>
+                {/* <AvatarGroup max={4}> */}
+                {eventUsers.map((eventUser) => (
+                    <Tooltip title="abc" key={eventUser.id}>
+                        <Avatar alt="def" src={`/images/avatar.png`} />
+                    </Tooltip>
+                ))}
+                {/* </AvatarGroup> */}
             </Box>
             <h3>Choose action:</h3>
             <Box display="flex" style={{ border: '1px solid red' }}>
