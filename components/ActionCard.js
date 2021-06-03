@@ -154,7 +154,7 @@ export default function ActionCard(props) {
                 <ListItemText>
                     <LinearProgressWithLabel value={Math.round(calculateParticipationProgress(eventAction.number_participants, eventAction.participation_threshold))} />
                 </ListItemText>
-                <ListItemText>
+                {!eventAction.is_completed && <ListItemText>
                     <Box align="center" style={{ paddingTop: 7 }}>
                         <CountdownCircleTimer
                             isPlaying
@@ -175,7 +175,7 @@ export default function ActionCard(props) {
                             }}
                         />
                     </Box>
-                </ListItemText>
+                </ListItemText>}
                 {joinButton(eventAction)}
             </ListItem>
         </React.Fragment>

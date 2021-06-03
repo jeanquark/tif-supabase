@@ -63,7 +63,7 @@ export default function europe({ onSelectCountry }) {
             obj['fixtures'] = stadiumFixtures
             console.log('obj: ', obj)
 
-            await delay(500)
+            await delay(200)
 
             setStadiums({
                 ...stadiums,

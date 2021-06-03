@@ -101,8 +101,8 @@ export default function ActionList() {
                 // 2) Remove user from event_users table
                 console.log('[useEffect] userRef.current: ', actionsRef.current)
                 if (userRef.current) {
-                    // await supabase.from('event_users').upsert({ user_id: userRef.current.id, joined_at: null, left_at: moment().utc() }, { onConflict: 'user_id' })
-                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: null }, { onConflict: 'user_id' })
+                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, joined_at: null }, { onConflict: 'user_id' })
+                    // await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: null }, { onConflict: 'user_id' })
                 }
             }
         } catch (error) {
@@ -176,10 +176,13 @@ export default function ActionList() {
                 console.log('eventUsers: ', eventUsers)
                 const index = eventUsers.findIndex((a) => a.id == updateEventUsers.id)
                 console.log('index: ', index)
+                let newEventUsers = [...eventUsers]
                 if (index == -1) {
-                    let newEventUsers = [...eventUsers]
                     newEventUsers.push(updateEventUsers)
                     console.log('newEventUsers: ', newEventUsers)
+                    setEventUsers(newEventUsers)
+                } else {
+                    newEventUsers.splice(index, 1)
                     setEventUsers(newEventUsers)
                 }
             }
@@ -229,26 +232,24 @@ export default function ActionList() {
             // 2) Subscribe to event users
             if (!subscriptionEventUsers) {
                 console.log('Subscribe to event_users')
-                subscriptionEventUsers = supabase
-                    .from('event_users')
-                    // .from(`event_users:event_id=eq.${id}`)
-                    .on('*', (payload) => {
-                        console.log('[*] subscriptionEventUsers: ', payload.new)
-                        // handleUpdateEventUsers(payload.new)
-                    })
+                subscriptionEventUsers = supabase.from(`event_users:event_id=eq.${id}`)
+                    // .on('*', (payload) => {
+                    //     console.log('[*] subscriptionEventUsers: ', payload.new)
+                    //     // handleUpdateEventUsers(payload.new)
+                    // })
                     .on('UPDATE', (payload) => {
                         console.log('[UPDATE] subscriptionEventUsers: ', payload.new)
-                        // handleUpdateEventUsers(payload.new)
-                    })
-                    .on('INSERT', (payload) => {
-                        console.log('[INSERT] subscriptionEventUsers: ', payload.new)
-                        // handleUpdateEventUsers(payload.new)
-                    })
-                    .on('DELETE', (payload) => {
-                        console.log('[DELETE] subscriptionEventUsers: ', payload.new)
-                        // handleUpdateEventUsers(payload.new)
+                        handleUpdateEventUsers(payload.new)
                     })
                     .subscribe()
+                    // .on('INSERT', (payload) => {
+                    //     console.log('[INSERT] subscriptionEventUsers: ', payload.new)
+                    //     // handleUpdateEventUsers(payload.new)
+                    // })
+                    // .on('DELETE', (payload) => {
+                    //     console.log('[DELETE] subscriptionEventUsers: ', payload.new)
+                    //     // handleUpdateEventUsers(payload.new)
+                    // })
                 console.log('subscriptionEventUsers: ', subscriptionEventUsers)
             } else {
                 supabase.removeSubscription(subscriptionEventUsers)
@@ -281,13 +282,13 @@ export default function ActionList() {
 
                 // 2) Add user to event
                 if (userRef.current) {
-                    // await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id, joined_at: moment().utc(), left_at: null }, { onConflict: 'user_id' })
-                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id }, { onConflict: 'user_id' })
+                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id, joined_at: moment().utc() }, { onConflict: 'user_id' })
+                    // await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id }, { onConflict: 'user_id' })
                 }
 
                 // 3) Retrieve event users
-                // const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, users (username, image)').eq('event_id', id).not('joined_at', 'is', null)
-                const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, users (username, image)').eq('event_id', id)
+                const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, users (username, image)').eq('event_id', id).not('joined_at', 'is', null)
+                // const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, users (username, image)').eq('event_id', id)
                 if (errorUsers) console.log('error: ', errorUsers)
                 setEventUsers(users)
 
@@ -375,7 +376,7 @@ export default function ActionList() {
                 <h3>Event users:</h3>
                 {/* <AvatarGroup max={4}> */}
                 {eventUsers.map((eventUser) => (
-                    <Tooltip title="abc" key={eventUser.id}>
+                    <Tooltip title={eventUser.id} key={eventUser.id}>
                         <Avatar alt="def" src={`/images/avatar.png`} />
                     </Tooltip>
                 ))}
