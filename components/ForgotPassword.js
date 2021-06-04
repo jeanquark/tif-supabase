@@ -16,11 +16,12 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import LockOpenIcon from '@material-ui/icons/LockOpen'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import { UserWrapper } from '../store/userContext'
 import UserContext from '../store/userContext'
+import SnackbarContext from '../store/snackbarContext'
 
 function Copyright() {
     return (
@@ -48,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
         padding: '0 30px',
     },
     image: {
-        // backgroundImage: 'url(https://source.unsplash.com/random)',
         backgroundImage: 'url(/images/avatar-transparent.png)',
         backgroundRepeat: 'no-repeat',
         backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -74,60 +74,50 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const googleOAuthHandler = async () => {
-    console.log('googleOAuthHandler')
-    console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
-    console.log('process.env.BASE_URL: ', process.env.NEXT_PUBLIC_BASE_URL)
-
-    
-    const { user, session, error } = await supabase.auth.signIn(
-        {
-            provider: 'google',
-        },
-        {
-            // redirectTo: 'http://localhost:3000/fixtures',
-            redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/euro2020`
-        }
-    )
-    console.log('user: ', user)
-    console.log('session: ', session)
-    console.log('error: ', error)
-}
-
 export default function Login(props) {
     const classes = useStyles()
-    const router = useRouter()
     const [errors, setErrors] = useState({
-        password: {
+        email: {
             show: false,
             message: '',
         },
     })
-    const userContext = useContext(UserContext)
+    const { setSnackbar } = useContext(SnackbarContext)
 
-    const signInUser = async (event) => {
+    const sendLink = async (event) => {
         try {
             event.preventDefault()
-            console.log('signInUser: ', event)
+            console.log('sendLink: ', event)
+            if (!event.target.email.value) {
+                setErrors({
+                    ...errors,
+                    email: {
+                        show: true,
+                        message: 'Email is required',
+                    },
+                })
+            }
 
-            let { user, error } = await supabase.auth.signIn({
-                email: event.target.email.value,
-                password: event.target.password.value,
-            })
+            console.log('event.target.email.value: ', event.target.email.value)
+
+            const { data, error } = await supabase.auth.api.resetPasswordForEmail('jm.kleger@ik.me')
             if (error) {
                 console.log('error: ', error)
                 setErrors({
                     ...errors,
-                    password: {
+                    email: {
                         show: true,
                         message: error.message,
                     },
                 })
                 return
             }
-            console.log('user: ', user)
-            userContext.setUser()
-            router.push('/euro2020')
+            console.log('data: ', data)
+            setSnackbar({
+                open: true,
+                message: 'Email sent! Please check your mail box in a minute for the reset link.',
+                severity: 'success'
+            })
         } catch (error) {
             console.log('error: ', error)
         }
@@ -136,50 +126,34 @@ export default function Login(props) {
     return (
         <div className={classes.paper}>
             <Avatar className={classes.avatar}>
-                <LockOutlinedIcon />
+                <LockOpenIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-                Sign in
+                Forgot password
             </Typography>
-            <form className={classes.form} noValidate onSubmit={signInUser}>
-                <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
+            <form className={classes.form} noValidate onSubmit={sendLink}>
                 <TextField
                     variant="outlined"
                     margin="normal"
                     required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    error={errors.password.show}
-                    helperText={errors.password.message}
+                    fullWidth 
+                    id="email" 
+                    label="Email Address" 
+                    name="email" 
+                    autoComplete="email" 
+                    autoFocus 
+                    error={errors.email.show} 
+                    helperText={errors.email.message} 
                 />
-
-                <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
                 <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                    Sign In
+                    Send me a link
                 </Button>
-                <Grid style={{ marginTop: 20 }}>
-                    <Button variant="contained" fullWidth classes={{ root: classes.button }} onClick={googleOAuthHandler}>
-                        Google login
-                    </Button>
-                </Grid>
                 <Box mt={3}>
                     <Grid container justify="space-between">
-                        {/* <Grid item>
-                            <Button color="secondary" onClick={() => props.setShowLoginForm(false)}>
-                                Don't have an account? Sign Up!
-                            </Button>
-                        </Grid> */}
                         <Grid item>
-                            <Button color="secondary" onClick={() => props.setForm('register')}>
-                                Don't have an account? Sign Up!
+                            <Button color="secondary" onClick={() => props.setForm('login')}>
+                                Back to login
                             </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button color="secondary" onClick={() => props.setForm('forgot-password')}>Forgot password?</Button>
                         </Grid>
                     </Grid>
                 </Box>

@@ -103,6 +103,9 @@ const useStyles = makeStyles((theme) => ({
 	small: {
 		width: theme.spacing(3),
 		height: theme.spacing(3),
+	},
+	active: {
+		background: theme.palette.action.hover
 	}
 }))
 
@@ -248,30 +251,16 @@ export default function Navbar() {
 				</div>
 				<Divider />
 				<List>
-					{/* {user && <ListItem>
-						<ListItemIcon>
-							<Avatar alt={user.email} src="/images/avatar.png" className={classes.small} />
-						</ListItemIcon>
-						<ListItemText><Button variant="outlined" color="primary" size="small" onClick={handleLogout}>Logout</Button></ListItemText>
-					</ListItem>} */}
-					<Link href="/" passHref>
-						<ListItem button component="a">
+					<Link href="/euro2020" passHref>
+						<ListItem button component="a" className={router.pathname == "/euro2020" ? classes.active : ""}>
 							<ListItemIcon>
 								<SportsSoccerIcon />
 							</ListItemIcon>
-							<ListItemText primary="Games" />
-						</ListItem>
-					</Link>
-					<Link href="/euro2020" passHref>
-						<ListItem button component="a">
-							<ListItemIcon>
-								<PeopleIcon />
-							</ListItemIcon>
-							<ListItemText primary="Players" />
+							<ListItemText primary="Euro 2020" />
 						</ListItem>
 					</Link>
 				</List>
-				<Divider />
+				{/* <Divider /> */}
 			</Drawer>
 		</div>
 	)

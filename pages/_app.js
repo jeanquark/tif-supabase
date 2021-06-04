@@ -8,6 +8,7 @@ import Snackbar from '../components/Snackbar'
 import { Auth } from '@supabase/ui'
 import { supabase } from '../lib/initSupabase'
 import { UserContextProvider } from '../store/userContext'
+import { EventsContextProvider } from '../store/eventsContext'
 import { ActionsContextProvider } from '../store/actionsContext'
 import { SnackbarContextProvider } from '../store/snackbarContext'
 
@@ -39,10 +40,12 @@ export default function MyApp(props) {
                     <CssBaseline />
                     <UserContextProvider supabase={supabase}>
                         <SnackbarContextProvider>
-                            <ActionsContextProvider>
-                                <Component {...pageProps} />
-                                <Snackbar />
-                            </ActionsContextProvider>
+                            <EventsContextProvider>
+                                <ActionsContextProvider>
+                                    <Component {...pageProps} />
+                                    <Snackbar />
+                                </ActionsContextProvider>
+                            </EventsContextProvider>
                         </SnackbarContextProvider>
                     </UserContextProvider>
                 </ThemeProvider>

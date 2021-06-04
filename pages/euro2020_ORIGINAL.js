@@ -88,47 +88,17 @@ const useStyles = makeStyles((theme) => ({
 export default function euro2020() {
     const classes = useStyles()
     const router = useRouter()
-    const { events: fixtures, setEvents: setFixtures } = useContext(EventsContext)
-    // const [fixtures, setFixtures] = useState([])
+    const { events } = useContext(EventsContext)
+    const [fixtures, setFixtures] = useState([])
     const [fixturesByGroup, setFixturesByGroup] = useState([[]])
     const [nextFixtures, setNextFixtures] = useState([])
     const [standingsByGroup, setStandingsByGroup] = useState([[]])
     const [country, setCountry] = useState('europe-uefa-euro2020')
     const [updateEvent, handleUpdateEvent] = useState([])
-    let subscriptionEvents = null
 
     useEffect(() => {
-        console.log('useEffect')
-        const nextFixtures = fixtures.filter((fixture) => moment(fixture.date).format('YYYY-MM-DD') >= moment().utc().format('YYYY-MM-DD')).slice(0, 3)
-        console.log('nextFixtures: ', nextFixtures)
-        setNextFixtures(nextFixtures)
-        const array = [[]]
-        let index
-        const groupIndexHashObject = {
-            A: 0,
-            B: 1,
-            C: 2,
-            D: 3,
-            E: 4,
-            F: 5,
-        }
-        for (let i = 0; i < fixtures.length; i++) {
-            index = groupIndexHashObject[fixtures[i]['group_name']]
-            if (!array[index]) {
-                array[index] = []
-            }
-            array[index].push(fixtures[i])
-        }
-        setFixturesByGroup(array)
-        subscriptionEvents = supabase
-            .from(`events:league_id=eq.4`)
-            .on('UPDATE', (payload) => {
-                console.log('[UPDATE]: ', payload)
-                // handleUpdateEvent(payload.new)
-            })
-            .subscribe()
-        console.log('subscriptionEvents: ', subscriptionEvents)
-    }, [fixtures])
+        fetchFixtures()
+    }, [])
 
     useEffect(() => {
         fetchStandings()
@@ -156,6 +126,45 @@ export default function euro2020() {
         }
     }, [updateEvent])
 
+    const fetchFixtures = async () => {
+        console.log('fetchFixtures!!!')
+        let { data: fixtures, error } = await supabase.from('events').select('*').eq('league_id', 4).order('date', true)
+        if (error) console.log('error', error)
+        else {
+            console.log('fixtures: ', fixtures)
+            setFixtures(fixtures)
+            const nextFixtures = fixtures.filter((fixture) => moment(fixture.date).format('YYYY-MM-DD') >= moment().utc().format('YYYY-MM-DD')).slice(0, 3)
+            console.log('nextFixtures: ', nextFixtures)
+            setNextFixtures(nextFixtures)
+            const array = [[]]
+            let index
+            const groupIndexHashObject = {
+                A: 0,
+                B: 1,
+                C: 2,
+                D: 3,
+                E: 4,
+                F: 5,
+            }
+            for (let i = 0; i < fixtures.length; i++) {
+                index = groupIndexHashObject[fixtures[i]['group_name']]
+                if (!array[index]) {
+                    array[index] = []
+                }
+                array[index].push(fixtures[i])
+            }
+            setFixturesByGroup(array)
+            const mySubscription = supabase
+                .from(`events:league_id=eq.4`)
+                .on('UPDATE', (payload) => {
+                    console.log('UPDATE: ', payload)
+                    handleUpdateEvent(payload.new)
+                })
+                .subscribe()
+            console.log('mySubscription: ', mySubscription)
+        }
+    }
+
     const fetchStandings = async () => {
         let { data: standings, error } = await supabase.from('standings').select('*').order('group_name', true)
         if (error) console.log('error', error)
@@ -179,16 +188,16 @@ export default function euro2020() {
         }
     }
 
-    // const subscribeToFixtures = () => {
-    //     const mySubscription = supabase
-    //         .from(`events`)
-    //         .on('UPDATE', (payload) => {
-    //             console.log('UPDATE: ', payload)
-    //             console.log('fixtures: ', fixtures)
-    //         })
-    //         .subscribe()
-    //     console.log('mySubscription: ', mySubscription)
-    // }
+    const subscribeToFixtures = () => {
+        const mySubscription = supabase
+            .from(`events`)
+            .on('UPDATE', (payload) => {
+                console.log('UPDATE: ', payload)
+                console.log('fixtures: ', fixtures)
+            })
+            .subscribe()
+        console.log('mySubscription: ', mySubscription)
+    }
 
     const updateFixturesByGroup = (fixtures) => {
         // console.log('fixturesByGroup2: ', fixtures)
@@ -241,8 +250,8 @@ export default function euro2020() {
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid>
                         <ul>
-                            {fixtures.map((event) => (
-                                <li key={event.id}>{event.home_team_name}</li>
+                            {events.map((event) => (
+                                <li key={event.id}>{event.id}</li>
                             ))}
                         </ul>
                     </Grid>

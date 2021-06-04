@@ -11,7 +11,6 @@ export function ActionsContextProvider(props) {
     useEffect(async () => {
         console.log('[actionsContext] useEffect ActionsContextProvider')
         if (actions.length < 1) {
-
             setActionsHandler()
         }
     }, [])

@@ -10,12 +10,22 @@ const theme = createMuiTheme({
 		secondary: {
 			main: '#19857B',
 		},
+		background: {
+			default: '#fff',
+		},
 		error: {
 			main: red.A400,
 		},
-		background: {
-			default: '#fff',
-		}
+		// warning: {
+		// },
+		// info: {
+		// },
+		// success: {
+		// },
+		// action: {
+		// 	active: '',
+		// 	hover: ''
+		// }	
 	},
 });
 

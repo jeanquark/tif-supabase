@@ -16,7 +16,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import HowToRegIcon from '@material-ui/icons/HowToReg'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import { ErrorSharp } from '@material-ui/icons'
@@ -155,7 +155,7 @@ export default function Register(props) {
                 message: 'Account created! Please check your mail box for the confirmation message.',
                 severity: 'success'
             })
-            props.setShowLoginForm(true)
+            props.setForm('login')
         } catch (error) {
             console.log('error: ', error)
         }
@@ -163,7 +163,7 @@ export default function Register(props) {
     return (
         <div className={classes.paper}>
             <Avatar className={classes.avatar}>
-                <LockOutlinedIcon />
+                <HowToRegIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
                 Register
@@ -213,7 +213,10 @@ export default function Register(props) {
                 </Button>
                 <Grid container>
                     <Grid item>
-                        <Button color="secondary" onClick={() => props.setShowLoginForm(true)}>
+                        {/* <Button color="secondary" onClick={() => props.setShowLoginForm(true)}>
+                            Already have an account? Sign In
+                        </Button> */}
+                        <Button color="secondary" onClick={() => props.setForm('login')}>
                             Already have an account? Sign In
                         </Button>
                     </Grid>
