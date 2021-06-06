@@ -9,6 +9,7 @@ import EventDetails from '../../components/EventDetails'
 import MessageList from '../../components/MessageList'
 import ActionList from '../../components/ActionList'
 import Navbar from '../../components/Navbar'
+import Login from '../../components/Login'
 import { Container, Grid, AppBar, Toolbar, Box, Button, Typography, IconButton, Menu, MenuItem } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -41,6 +42,20 @@ const Event = () => {
     const classes = useStyles()
     const { user, session } = Auth.useUser()
     const [event, setEvent] = useState([])
+    const [component, setComponent] = useState('actionList')
+
+    function showComponent () {
+		switch (component) {
+            case 'actionList':
+				return <ActionList setComponent={setComponent} />
+				break
+			case 'login':
+				return <Login setComponent={setComponent} />
+				break
+			default:
+				return <ActionList setComponent={setComponent} />
+		}
+	}
 
     return (
         <div className={classes.root}>
@@ -62,6 +77,7 @@ const Event = () => {
                             <Grid item xs={12} sm={6}>
                                 {/* <MessageList /> */}
                                 <ActionList />
+                                {/* {showComponent()} */}
                             </Grid>
                         </Grid>
                     </Container>

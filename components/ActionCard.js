@@ -135,6 +135,10 @@ export default function ActionCard(props) {
             return (
                 <Button variant="outlined" size="small" color="primary" disabled={true}>Joined</Button>
             )
+        } else if (eventAction.user_id == user.id) {
+            return (
+                <Button variant="outlined" size="small" color="primary" disabled={true}>Launched</Button>
+            )
         } else {
             return (
                 <Button variant="outlined" size="small" color="primary" onClick={() => joinAction(eventAction)}>

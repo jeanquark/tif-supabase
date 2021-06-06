@@ -128,6 +128,19 @@ export default function Navbar() {
 	}
 
 	useEffect(() => {
+        // Remove user from event_users table when leaving
+		console.log('[useEffect] Navbar')
+        const onbeforeunloadFn = () => {
+            localStorage.setItem('color', 'red')
+        }
+
+        window.addEventListener('beforeunload', onbeforeunloadFn)
+        return () => {
+            window.removeEventListener('beforeunload', onbeforeunloadFn)
+        }
+    }, [])
+
+	useEffect(() => {
 		const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
 			console.log('[index] onAuthStateChange event: ', event)
 			if (event === 'PASSWORD_RECOVERY') setAuthView('update_password')

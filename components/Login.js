@@ -56,7 +56,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
     },
     paper: {
-        margin: theme.spacing(8, 4),
+        // margin: theme.spacing(8, 4),
+        margin: props => props.modal ? 0 : theme.spacing(8, 4),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -95,7 +96,7 @@ const googleOAuthHandler = async () => {
 }
 
 export default function Login(props) {
-    const classes = useStyles()
+    const classes = useStyles(props)
     const router = useRouter()
     const [errors, setErrors] = useState({
         password: {
@@ -127,7 +128,7 @@ export default function Login(props) {
             }
             console.log('user: ', user)
             userContext.setUser()
-            router.push('/euro2020')
+            props.redirectTo ? router.push(props.redirectTo) : router.push('/euro2020')
         } catch (error) {
             console.log('error: ', error)
         }
@@ -168,11 +169,6 @@ export default function Login(props) {
                 </Grid>
                 <Box mt={3}>
                     <Grid container justify="space-between">
-                        {/* <Grid item>
-                            <Button color="secondary" onClick={() => props.setShowLoginForm(false)}>
-                                Don't have an account? Sign Up!
-                            </Button>
-                        </Grid> */}
                         <Grid item>
                             <Button color="secondary" onClick={() => props.setForm('register')}>
                                 Don't have an account? Sign Up!
@@ -184,9 +180,9 @@ export default function Login(props) {
                     </Grid>
                 </Box>
 
-                <Box mt={5}>
+                {!props.modal && <Box mt={5}>
                     <Copyright />
-                </Box>
+                </Box>}
             </form>
         </div>
     )

@@ -25,6 +25,8 @@ import Tooltip from '@material-ui/core/Tooltip'
 import ActionCard from './ActionCard'
 import UserContext from '../store/userContext'
 import ActionsContext from '../store/actionsContext'
+import ModalContext from '../store/modalContext'
+import DialogContext from '../store/dialogContext'
 
 const useStyles = makeStyles((theme) => ({
     text: {
@@ -64,11 +66,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function ActionList() {
+export default function ActionList(props) {
     const classes = useStyles()
     // const { user } = Auth.useUser()
     const { user } = useContext(UserContext)
     const { actions } = useContext(ActionsContext)
+    const { modal, setModal } = useContext(ModalContext)
+    const { dialog, setDialog } = useContext(DialogContext)
     const router = useRouter()
     const { id } = router.query
     // const [actions, setActions] = useState([])
@@ -174,13 +178,14 @@ export default function ActionList() {
             console.log('[useEffect] updateEventUsers: ', updateEventUsers)
             if (updateEventUsers) {
                 console.log('eventUsers: ', eventUsers)
-                const index = eventUsers.findIndex((a) => a.id == updateEventUsers.id)
-                console.log('index: ', index)
                 let newEventUsers = [...eventUsers]
-                if (index == -1) {
-                    newEventUsers.push(updateEventUsers)
-                    console.log('newEventUsers: ', newEventUsers)
-                    setEventUsers(newEventUsers)
+                const index = eventUsers.findIndex((a) => a.id == updateEventUsers.id)
+                if (updateEventUsers.joined_at) {
+                    if (index == -1) {
+                        newEventUsers.push(updateEventUsers)
+                        console.log('newEventUsers: ', newEventUsers)
+                        setEventUsers(newEventUsers)
+                    } 
                 } else {
                     newEventUsers.splice(index, 1)
                     setEventUsers(newEventUsers)
@@ -212,8 +217,8 @@ export default function ActionList() {
                                 image: action.image,
                             },
                             users: {
-                                // username: user.users?.username,
-                                username: 'jeanquark'
+                                username: user.users?.username,
+                                // username: 'jeanquark',
                             },
                             ...payload.new,
                         }
@@ -232,24 +237,13 @@ export default function ActionList() {
             // 2) Subscribe to event users
             if (!subscriptionEventUsers) {
                 console.log('Subscribe to event_users')
-                subscriptionEventUsers = supabase.from(`event_users:event_id=eq.${id}`)
-                    // .on('*', (payload) => {
-                    //     console.log('[*] subscriptionEventUsers: ', payload.new)
-                    //     // handleUpdateEventUsers(payload.new)
-                    // })
+                subscriptionEventUsers = supabase
+                    .from(`event_users:event_id=eq.${id}`)
                     .on('UPDATE', (payload) => {
                         console.log('[UPDATE] subscriptionEventUsers: ', payload.new)
                         handleUpdateEventUsers(payload.new)
                     })
                     .subscribe()
-                    // .on('INSERT', (payload) => {
-                    //     console.log('[INSERT] subscriptionEventUsers: ', payload.new)
-                    //     // handleUpdateEventUsers(payload.new)
-                    // })
-                    // .on('DELETE', (payload) => {
-                    //     console.log('[DELETE] subscriptionEventUsers: ', payload.new)
-                    //     // handleUpdateEventUsers(payload.new)
-                    // })
                 console.log('subscriptionEventUsers: ', subscriptionEventUsers)
             } else {
                 supabase.removeSubscription(subscriptionEventUsers)
@@ -282,12 +276,12 @@ export default function ActionList() {
 
                 // 2) Add user to event
                 if (userRef.current) {
-                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id, joined_at: moment().utc() }, { onConflict: 'user_id' })
+                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id, username: userRef.current.username, joined_at: moment().utc() }, { onConflict: 'user_id' })
                     // await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id }, { onConflict: 'user_id' })
                 }
 
                 // 3) Retrieve event users
-                const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, users (username, image)').eq('event_id', id).not('joined_at', 'is', null)
+                const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, username').eq('event_id', id).not('joined_at', 'is', null)
                 // const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, users (username, image)').eq('event_id', id)
                 if (errorUsers) console.log('error: ', errorUsers)
                 setEventUsers(users)
@@ -301,7 +295,6 @@ export default function ActionList() {
                         handleJoinAction({ id: joinedActions[i]['event_action_id'] })
                     }
                 }
-
             }
         } catch (error) {
             console.log('error: ', error)
@@ -324,7 +317,7 @@ export default function ActionList() {
         if (eventUsers.length <= 2) {
             return 2
         }
-        return eventUsers.length * 0.5
+        return Math.floor(eventUsers.length * 0.5)
     }
 
     const calculateExpirationTime = () => {
@@ -354,7 +347,7 @@ export default function ActionList() {
             const { error: error2 } = await supabase.from('event_actions_users').insert([
                 {
                     event_action_id: newEventAction[0].id,
-                    user_id: user.id
+                    user_id: user.id,
                 },
             ])
             if (error2) {
@@ -376,7 +369,7 @@ export default function ActionList() {
                 <h3>Event users:</h3>
                 {/* <AvatarGroup max={4}> */}
                 {eventUsers.map((eventUser) => (
-                    <Tooltip title={eventUser.id} key={eventUser.id}>
+                    <Tooltip title={eventUser.username} key={eventUser.id}>
                         <Avatar alt="def" src={`/images/avatar.png`} />
                     </Tooltip>
                 ))}
@@ -407,7 +400,11 @@ export default function ActionList() {
                 </Paper>
                 <AppBar position="sticky" color="primary" className={classes.appBar}>
                     <Toolbar variant="dense">
-                        {!user && 'Login to participate'}
+                        {!user && (
+                            <Button variant="contained" size="small" color="primary" onClick={() => setModal({ open: true, type: 'login', redirectTo: '/events/110' })}>
+                                Login to participate
+                            </Button>
+                        )}
                         <Fab color="secondary" size="medium" aria-label="add" className={classes.fabButton}>
                             <AddIcon />
                         </Fab>
@@ -415,7 +412,6 @@ export default function ActionList() {
                         <IconButton edge="end" color="inherit">
                             <SearchIcon />
                         </IconButton>
-
 
                         {/* <IconButton edge="start" color="inherit" aria-label="open drawer">
                             <MenuIcon />

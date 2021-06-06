@@ -73,7 +73,7 @@ export default function index() {
 	const { snackbar, setSnackbar } = useContext(SnackbarContext)
 	const [open, setOpen] = useState(false);
 	// const [snackbar, setSnackbar] = useState({ open: false })
-	const [form, setForm] = useState('reset-password')
+	const [form, setForm] = useState('')
 	
 	
 	useEffect(() => {

@@ -56,7 +56,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
     },
     paper: {
-        margin: theme.spacing(8, 4),
+        // margin: theme.spacing(8, 4),
+        margin: props => props.modal ? 0 : theme.spacing(8, 4),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -158,9 +159,9 @@ export default function Login(props) {
                     </Grid>
                 </Box>
 
-                <Box mt={5}>
+                {!props.modal && <Box mt={5}>
                     <Copyright />
-                </Box>
+                </Box>}
             </form>
         </div>
     )

@@ -5,11 +5,14 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
 import Snackbar from '../components/Snackbar'
+import Modal from '../components/Modal'
 import { Auth } from '@supabase/ui'
 import { supabase } from '../lib/initSupabase'
 import { UserContextProvider } from '../store/userContext'
 import { EventsContextProvider } from '../store/eventsContext'
 import { ActionsContextProvider } from '../store/actionsContext'
+import { ModalContextProvider } from '../store/modalContext'
+import { DialogContextProvider } from '../store/dialogContext'
 import { SnackbarContextProvider } from '../store/snackbarContext'
 
 export default function MyApp(props) {
@@ -39,14 +42,19 @@ export default function MyApp(props) {
                     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
                     <UserContextProvider supabase={supabase}>
-                        <SnackbarContextProvider>
-                            <EventsContextProvider>
-                                <ActionsContextProvider>
-                                    <Component {...pageProps} />
-                                    <Snackbar />
-                                </ActionsContextProvider>
-                            </EventsContextProvider>
-                        </SnackbarContextProvider>
+                        <ModalContextProvider>
+                            <DialogContextProvider>
+                                <SnackbarContextProvider>
+                                    <EventsContextProvider>
+                                        <ActionsContextProvider>
+                                            <Component {...pageProps} />
+                                            <Modal />
+                                            <Snackbar />
+                                        </ActionsContextProvider>
+                                    </EventsContextProvider>
+                                </SnackbarContextProvider>
+                            </DialogContextProvider>
+                        </ModalContextProvider>
                     </UserContextProvider>
                 </ThemeProvider>
             </Auth.UserContextProvider>

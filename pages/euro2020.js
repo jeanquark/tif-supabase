@@ -124,6 +124,19 @@ export default function euro2020() {
             .from(`events:league_id=eq.4`)
             .on('UPDATE', (payload) => {
                 console.log('[UPDATE]: ', payload)
+                console.log('fixtures: ', fixtures)
+                const index = fixtures.findIndex((a) => a.id == payload.new.id)
+                console.log('index: ', index)
+                if (index != -1) {
+                    // 1) Update fixtures array
+                    let newFixtures = [...fixtures]
+                    console.log('newFixtures: ', newFixtures)
+                    newFixtures[index] = updateEvent
+                    setFixtures(newFixtures)
+
+                    // 2) Update fixturesByGroup object
+                    updateFixturesByGroup(newFixtures)
+                }
                 // handleUpdateEvent(payload.new)
             })
             .subscribe()
@@ -239,13 +252,13 @@ export default function euro2020() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                    <Grid>
+                    {/* <Grid>
                         <ul>
                             {fixtures.map((event) => (
                                 <li key={event.id}>{event.home_team_name}</li>
                             ))}
                         </ul>
-                    </Grid>
+                    </Grid> */}
 
                     <Grid container alignItems="center" justify="center" className={classes.root} style={{ paddingTop: '0px', marginTop: '0px', border: '2px solid red' }}>
                         <Grid container item style={{ border: '2px solid green' }}>
