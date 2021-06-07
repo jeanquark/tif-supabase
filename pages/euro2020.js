@@ -93,7 +93,7 @@ export default function euro2020() {
     const [fixturesByGroup, setFixturesByGroup] = useState([[]])
     const [nextFixtures, setNextFixtures] = useState([])
     const [standingsByGroup, setStandingsByGroup] = useState([[]])
-    const [country, setCountry] = useState('europe-uefa-euro2020')
+    const [country, setCountry] = useState('europe-uefa-euro2020_2')
     const [updateEvent, handleUpdateEvent] = useState([])
     let subscriptionEvents = null
 
