@@ -83,7 +83,7 @@ const googleOAuthHandler = async () => {
     console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
     console.log('process.env.BASE_URL: ', process.env.NEXT_PUBLIC_BASE_URL)
 
-    
+
     const { user, session, error } = await supabase.auth.signIn(
         {
             provider: 'google',
@@ -93,9 +93,16 @@ const googleOAuthHandler = async () => {
             redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/euro2020`
         }
     )
+    // if (error) {
+    //     console.log('error: ', error)
+    //     return
+    // }
     console.log('user: ', user)
     console.log('session: ', session)
     console.log('error: ', error)
+
+    // userContext.setUser()
+    // props.redirectTo ? router.push(props.redirectTo) : router.push('/euro2020')
 }
 
 export default function Login(props) {
@@ -108,6 +115,30 @@ export default function Login(props) {
         },
     })
     const userContext = useContext(UserContext)
+
+    useEffect(() => {
+        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log('[Login] onAuthStateChange event: ', event)
+            // Send session to /api/auth route to set the auth cookie.
+            // NOTE: this is only needed if you're doing SSR (getServerSideProps)!
+            fetch('/api/auth', {
+                method: 'POST',
+                headers: new Headers({ 'Content-Type': 'application/json' }),
+                credentials: 'same-origin',
+                body: JSON.stringify({ event, session }),
+            })
+                .then((res) => res.json())
+                .then(() => {
+                    if (event === 'SIGNED_IN') {
+                        console.log('SIGNED_IN')
+                        userContext.setUser()
+                    }
+                })
+        })
+        return () => {
+            authListener.unsubscribe()
+        }
+    }, [])
 
     const signInUser = async (event) => {
         try {
@@ -130,7 +161,9 @@ export default function Login(props) {
                 return
             }
             console.log('user: ', user)
-            userContext.setUser()
+            console.log('props: ', props)
+            // router.push('/euro2020')
+            // userContext.setUser()
             props.redirectTo ? router.push(props.redirectTo) : router.push('/euro2020')
         } catch (error) {
             console.log('error: ', error)

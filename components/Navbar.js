@@ -119,6 +119,7 @@ export default function Navbar() {
 	// const user = useUserContext()
 	const { user } = useContext(UserContext)
 	const openAnchorEl = Boolean(anchorEl)
+	const userContext = useContext(UserContext)
 
 	const handleMenu = (event) => {
 		setAnchorEl(event.currentTarget)
@@ -126,45 +127,43 @@ export default function Navbar() {
 	const handleClose = () => {
 		setAnchorEl(null)
 	}
-
+	
 	useEffect(() => {
-        // Remove user from event_users table when leaving
-		console.log('[useEffect] Navbar')
-        const onbeforeunloadFn = () => {
-            localStorage.setItem('color', 'red')
-        }
-
-        window.addEventListener('beforeunload', onbeforeunloadFn)
+        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+            console.log('[Navbar] onAuthStateChange event: ', event)
+            // Send session to /api/auth route to set the auth cookie.
+            // NOTE: this is only needed if you're doing SSR (getServerSideProps)!
+            fetch('/api/auth', {
+                method: 'POST',
+                headers: new Headers({ 'Content-Type': 'application/json' }),
+                credentials: 'same-origin',
+                body: JSON.stringify({ event, session }),
+            })
+            .then((res) => res.json())
+            .then(() => {
+                if (event === 'SIGNED_IN') {
+                    console.log('SIGNED_IN')
+                    userContext.setUser()
+                }
+            })
+        })
         return () => {
-            window.removeEventListener('beforeunload', onbeforeunloadFn)
+            authListener.unsubscribe()
         }
     }, [])
 
-	useEffect(() => {
-		const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-			console.log('[index] onAuthStateChange event: ', event)
-			if (event === 'PASSWORD_RECOVERY') setAuthView('update_password')
-			if (event === 'USER_UPDATED') setTimeout(() => setAuthView('sign_in'), 1000)
-			// Send session to /api/auth route to set the auth cookie.
-			// NOTE: this is only needed if you're doing SSR (getServerSideProps)!
-			fetch('/api/auth', {
-				method: 'POST',
-				headers: new Headers({ 'Content-Type': 'application/json' }),
-				credentials: 'same-origin',
-				body: JSON.stringify({ event, session }),
-			})
-				.then((res) => res.json())
-			// .then(() => {
-			// 	if (event === 'SIGNED_IN') {
-			// 		router.push('/fixtures')
-			// 	}
-			// })
-		})
+	// useEffect(() => {
+    //     // Remove user from event_users table when leaving
+	// 	console.log('[useEffect] Navbar')
+    //     const onbeforeunloadFn = () => {
+    //         localStorage.setItem('color', 'red')
+    //     }
 
-		return () => {
-			authListener.unsubscribe()
-		}
-	}, [])
+    //     window.addEventListener('beforeunload', onbeforeunloadFn)
+    //     return () => {
+    //         window.removeEventListener('beforeunload', onbeforeunloadFn)
+    //     }
+    // }, [])
 
 	const handleDrawerOpen = () => {
 		setOpen(true)

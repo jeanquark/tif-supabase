@@ -259,7 +259,7 @@ export default function ActionList(props) {
                 // 1) Retrieve event actions
                 const { data: actions, error: errorActions } = await supabase
                     .from(`event_actions`)
-                    .select('id, number_participants, participation_threshold, expired_at, actions (name, image), events (home_team_name, visitor_team_name), users (id, username, full_name)')
+                    .select('id, number_participants, participation_threshold, expired_at, actions (name, image), events (home_team_name, visitor_team_name), users (id, username)')
                     .eq('event_id', id)
                     .gt('expired_at', moment().utc())
                     .order('id', { ascending: true })

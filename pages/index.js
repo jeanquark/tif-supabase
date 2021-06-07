@@ -96,25 +96,25 @@ export default function index() {
 	}, [])
 
 	useEffect(() => {
-		const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-			console.log('[index] onAuthStateChange event: ', event)
-			// if (event === 'PASSWORD_RECOVERY') setAuthView('update_password')
-			// if (event === 'USER_UPDATED') setTimeout(() => setAuthView('sign_in'), 1000)
-			// Send session to /api/auth route to set the auth cookie.
-			// NOTE: this is only needed if you're doing SSR (getServerSideProps)!
-			fetch('/api/auth', {
-				method: 'POST',
-				headers: new Headers({ 'Content-Type': 'application/json' }),
-				credentials: 'same-origin',
-				body: JSON.stringify({ event, session }),
-			})
-			.then((res) => res.json())
-			// .then(() => {
-			// 	if (event === 'SIGNED_IN') {
-			// 		router.push('/fixtures')
-			// 	}
-			// })
-		})
+		// const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+		// 	console.log('[index] onAuthStateChange event: ', event)
+		// 	// if (event === 'PASSWORD_RECOVERY') setAuthView('update_password')
+		// 	// if (event === 'USER_UPDATED') setTimeout(() => setAuthView('sign_in'), 1000)
+		// 	// Send session to /api/auth route to set the auth cookie.
+		// 	// NOTE: this is only needed if you're doing SSR (getServerSideProps)!
+		// 	fetch('/api/auth', {
+		// 		method: 'POST',
+		// 		headers: new Headers({ 'Content-Type': 'application/json' }),
+		// 		credentials: 'same-origin',
+		// 		body: JSON.stringify({ event, session }),
+		// 	})
+		// 	.then((res) => res.json())
+		// 	// .then(() => {
+		// 	// 	if (event === 'SIGNED_IN') {
+		// 	// 		router.push('/fixtures')
+		// 	// 	}
+		// 	// })
+		// })
 
 		setSnackbar({
 			open: true,
@@ -122,15 +122,15 @@ export default function index() {
 			severity: 'success'
 		})
 
-		return () => {
-			authListener.unsubscribe()
-		}
+		// return () => {
+		// 	authListener.unsubscribe()
+		// }
 	}, [])
 
 	function showForm () {
 		switch (form) {
 			case 'login':
-				return <Login setForm={setForm} />
+				return <Login setForm={setForm} redirectTo={"/euro2020"} />
 				break
 			case 'register':
 				return <Register setForm={setForm} />
@@ -142,14 +142,14 @@ export default function index() {
 				return <ResetPassword setForm={setForm} />
 				break
 			default:
-				return <Login setForm={setForm} />
+				return <Login setForm={setForm} redirectTo={"/euro2020"} />
 		}
 	}
 
 	return (
 		<>
 			<Head>
-				<title>Home - TIF</title>
+				<title>TIF - Home</title>
 			</Head>
 			<Grid container component="main" className={classes.root}>
 				<CssBaseline />
