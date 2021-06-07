@@ -235,7 +235,7 @@ export default function euro2020() {
     const getDynamicComponent = (c) =>
         dynamic(() => import(`../components/svg/${c}`), {
             ssr: false,
-            loading: () => <p>Loading...</p>,
+            loading: () => <p>Loading map...</p>,
         })
 
     const DynamicComponent = getDynamicComponent(country)

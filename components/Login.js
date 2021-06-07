@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         height: 38,
         padding: '0 30px',
+        '&:hover': {
+            background: '#263A62'
+        }
     },
     image: {
         // backgroundImage: 'url(https://source.unsplash.com/random)',

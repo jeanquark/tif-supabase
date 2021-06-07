@@ -217,8 +217,7 @@ export default function ActionList(props) {
                                 image: action.image,
                             },
                             users: {
-                                username: user.users?.username,
-                                // username: 'jeanquark',
+                                username: user.users?.username
                             },
                             ...payload.new,
                         }
@@ -261,7 +260,6 @@ export default function ActionList(props) {
                 const { data: actions, error: errorActions } = await supabase
                     .from(`event_actions`)
                     .select('id, number_participants, participation_threshold, expired_at, actions (name, image), events (home_team_name, visitor_team_name), users (id, username, full_name)')
-                    // .select('id, number_participants, participation_threshold, expired_at, actions (name), events (home_team_name, visitor_team_name)')
                     .eq('event_id', id)
                     .gt('expired_at', moment().utc())
                     .order('id', { ascending: true })
@@ -282,7 +280,6 @@ export default function ActionList(props) {
 
                 // 3) Retrieve event users
                 const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, username').eq('event_id', id).not('joined_at', 'is', null)
-                // const { data: users, errorUsers } = await supabase.from('event_users').select('id, event_id, user_id, users (username, image)').eq('event_id', id)
                 if (errorUsers) console.log('error: ', errorUsers)
                 setEventUsers(users)
 
@@ -412,20 +409,6 @@ export default function ActionList(props) {
                         <IconButton edge="end" color="inherit">
                             <SearchIcon />
                         </IconButton>
-
-                        {/* <IconButton edge="start" color="inherit" aria-label="open drawer">
-                            <MenuIcon />
-                        </IconButton>
-                        <Fab color="secondary" size="medium" aria-label="add" className={classes.fabButton}>
-                            <AddIcon />
-                        </Fab>
-                        <div className={classes.grow} />
-                        <IconButton color="inherit">
-                            <SearchIcon />
-                        </IconButton>
-                        <IconButton edge="end" color="inherit">
-                            <MoreIcon />
-                        </IconButton> */}
                     </Toolbar>
                 </AppBar>
             </Box>
