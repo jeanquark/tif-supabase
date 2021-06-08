@@ -238,7 +238,7 @@ export default function Navbar() {
 							onClose={handleClose}
 						>
 							{/* <MenuItem>Profile</MenuItem> */}
-							{/* <MenuItem>My account</MenuItem> */}
+							<MenuItem>{user.email}</MenuItem>
 							<MenuItem onClick={handleLogout}>Logout</MenuItem>
 						</Menu>
 					</>}
