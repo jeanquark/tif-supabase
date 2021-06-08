@@ -217,7 +217,8 @@ export default function ActionList(props) {
                                 image: action.image,
                             },
                             users: {
-                                username: user.users?.username
+                                // username: user.users?.username
+                                username: user.email
                             },
                             ...payload.new,
                         }
@@ -274,7 +275,7 @@ export default function ActionList(props) {
 
                 // 2) Add user to event
                 if (userRef.current) {
-                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id, username: userRef.current.username, joined_at: moment().utc() }, { onConflict: 'user_id' })
+                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id, username: userRef.current.email, joined_at: moment().utc() }, { onConflict: 'user_id' })
                     // await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id }, { onConflict: 'user_id' })
                 }
 
@@ -366,7 +367,7 @@ export default function ActionList(props) {
                 <h3>Event users:</h3>
                 {/* <AvatarGroup max={4}> */}
                 {eventUsers.map((eventUser) => (
-                    <Tooltip title={eventUser.username} key={eventUser.id}>
+                    <Tooltip title={eventUser.username} placement="left" key={eventUser.id}>
                         <Avatar alt="def" src={`/images/avatar.png`} />
                     </Tooltip>
                 ))}

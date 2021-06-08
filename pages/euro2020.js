@@ -83,6 +83,9 @@ const useStyles = makeStyles((theme) => ({
     hover: {
         cursor: 'pointer',
     },
+    box: {
+        margin: '.5em'
+    }
 }))
 
 export default function euro2020() {
@@ -93,7 +96,7 @@ export default function euro2020() {
     const [fixturesByGroup, setFixturesByGroup] = useState([[]])
     const [nextFixtures, setNextFixtures] = useState([])
     const [standingsByGroup, setStandingsByGroup] = useState([[]])
-    const [country, setCountry] = useState('europe-uefa-euro2020_2')
+    const [country, setCountry] = useState('europe-uefa-euro2020')
     const [updateEvent, handleUpdateEvent] = useState([])
     let subscriptionEvents = null
 
@@ -262,10 +265,10 @@ export default function euro2020() {
 
                     <Grid container alignItems="center" justify="center" className={classes.root} style={{ paddingTop: '0px', marginTop: '0px', border: '2px solid red' }}>
                         <Grid container item style={{ border: '2px solid green' }}>
-                            <Grid container item direction="column" justify="space-around" sm={12} md={3} style={{ border: '2px solid pink' }}>
-                                <Typography variant="h5" className={classes.typography}>Next fixtures</Typography>
+                            <Grid container item direction="column" justify="flex-start" sm={12} md={3} style={{ border: '2px solid pink' }}>
+                                <Typography variant="h6" className={classes.typography}>Next fixtures</Typography>
                                 {nextFixtures.map((fixture) => (
-                                    <Box my={5} key={fixture.id}>
+                                    <Box my={5} key={fixture.id} className={classes.box}>
                                         <Link href={`/events/${fixture.id}`}>
                                             <Card>
                                                 <CardActionArea>

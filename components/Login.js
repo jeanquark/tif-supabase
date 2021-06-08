@@ -24,14 +24,19 @@ import UserContext from '../store/userContext'
 
 function Copyright() {
     return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                TIF
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
+        <>
+            <Typography variant="body2" color="textSecondary" align="center">
+                {'Copyright © '}
+                <Link color="inherit" href="https://material-ui.com/">
+                    TIF
+                </Link>{' '}
+                {new Date().getFullYear()}
+                {'.'}
+            </Typography>
+            <Typography variant="caption" color="textSecondary" display="block" align="center">
+                Last successful deployment: Tuesday June 8, 17:00.
+            </Typography>
+        </>
     )
 }
 

@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	image: {
 		// backgroundImage: 'url(https://source.unsplash.com/random)',
-		backgroundImage: 'url(/images/avatar-transparent.png)',
+		// backgroundImage: 'url(/images/avatar-transparent.png)',
+		backgroundImage: 'url(/images/avatar.svg)',
 		backgroundRepeat: 'no-repeat',
 		backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
 		backgroundSize: 'cover',
@@ -156,27 +157,18 @@ export default function index() {
 
 				<Grid item xs={false} sm={4} md={7} className={classes.image}>
 					<Grid container spacing={0} direction="column" alignItems="center" justify="center" style={{ minHeight: '100vh' }}>
-						<Grid item xs={3}>
+						<Grid item xs={3} style={{ paddingBottom: 0 }}>
 							<Link href="/euro2020" passHref>
-								<Button component="a" variant="contained" color="primary">
+								<Button component="a" variant="contained" color="primary" size="large">
 									enter as guest
                                 </Button>
 							</Link>
 						</Grid>
 					</Grid>
-					<Grid container justify="center" alignItems="flex-end">
-						<p>tif-supabase<br />
-							Last successful deployment: Tuesday June 7, 22:33.</p>
-					</Grid>
 				</Grid>
 				<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-					{/* {showLoginForm ? <Login setShowLoginForm={setShowLoginForm} /> :
-						<Register setShowLoginForm={setShowLoginForm} />
-					} */}
 					{showForm()}
 				</Grid>
-				{/* <Button onClick={handleClick}>Open simple snackbar</Button> */}
-				{/* <Snackbar open={open} message={'Hello from Jean-Marc!'} /> */}
 			</Grid>
 		</>
 	)

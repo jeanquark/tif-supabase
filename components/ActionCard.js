@@ -158,7 +158,7 @@ export default function ActionCard(props) {
                 <ListItemText>
                     <LinearProgressWithLabel value={Math.round(calculateParticipationProgress(eventAction.number_participants, eventAction.participation_threshold))} />
                 </ListItemText>
-                {!eventAction.is_completed && <ListItemText>
+                {!eventAction.is_completed && <ListItemText style={{ paddingRight: 10 }}>
                     <Box align="center" style={{ paddingTop: 7 }}>
                         <CountdownCircleTimer
                             isPlaying
