@@ -154,7 +154,7 @@ export default function ActionCard(props) {
                 <ListItemAvatar>
                     <Avatar alt="Profile Picture" src={`/images/actions/${eventAction.actions?.image}`} />
                 </ListItemAvatar>
-                <ListItemText primary={eventAction.actions?.name} secondary={eventAction.users?.username} />
+                <ListItemText primary={eventAction.actions?.name} secondary={eventAction.users?.username || 'anonymous'} />
                 <ListItemText>
                     <LinearProgressWithLabel value={Math.round(calculateParticipationProgress(eventAction.number_participants, eventAction.participation_threshold))} />
                 </ListItemText>

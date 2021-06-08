@@ -96,6 +96,34 @@ export default function ActionList(props) {
             console.log('[useEffect] getActionsAndSubscribe() id: ', id)
             if (id != undefined) {
                 getActionsAndSubscribe(id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
             return async () => {
                 // 1) Remove subscription
@@ -125,6 +153,7 @@ export default function ActionList(props) {
             if (updateAction) {
                 const index = eventActions.findIndex((a) => a.id == updateAction.id)
                 console.log('index: ', index)
+                
                 let newActions = [...eventActions]
                 newActions[index]['number_participants'] = updateAction.number_participants
                 newActions[index]['is_completed'] = updateAction.is_completed
@@ -217,9 +246,10 @@ export default function ActionList(props) {
                                 image: action.image,
                             },
                             users: {
-                                // username: user.users?.username
-                                username: user.email
+                                // username: 'jeanquark'
+                                username: user?.username || 'anonymous'
                             },
+                            // username: user.email,
                             ...payload.new,
                         }
                         setEventActions((a) => [...a, newEventAction])
@@ -270,12 +300,12 @@ export default function ActionList(props) {
                     subscriptionEventActions = null
                     return
                 }
-                // console.log('actions: ', actions)
+                console.log('actions: ', actions)
                 setEventActions(actions)
 
                 // 2) Add user to event
                 if (userRef.current) {
-                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id, username: userRef.current.email, joined_at: moment().utc() }, { onConflict: 'user_id' })
+                    await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id, username: userRef.current.username, joined_at: moment().utc() }, { onConflict: 'user_id' })
                     // await supabase.from('event_users').upsert({ user_id: userRef.current.id, event_id: id }, { onConflict: 'user_id' })
                 }
 
@@ -367,7 +397,7 @@ export default function ActionList(props) {
                 <h3>Event users:</h3>
                 {/* <AvatarGroup max={4}> */}
                 {eventUsers.map((eventUser) => (
-                    <Tooltip title={eventUser.username} placement="left" key={eventUser.id}>
+                    <Tooltip title={eventUser.users?.username || 'anonymous'} placement="left" key={eventUser.id}>
                         <Avatar alt="def" src={`/images/avatar.png`} />
                     </Tooltip>
                 ))}

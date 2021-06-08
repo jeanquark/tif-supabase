@@ -38,97 +38,97 @@ import UserContext from '../store/userContext'
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		display: 'flex'
-	},
-	appBar: {
-		zIndex: theme.zIndex.drawer + 1,
-		transition: theme.transitions.create(['width', 'margin'], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-	},
-	appBarShift: {
-		marginLeft: drawerWidth,
-		width: `calc(100% - ${drawerWidth}px)`,
-		transition: theme.transitions.create(['width', 'margin'], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-	},
-	menuButton: {
-		marginRight: 36,
-	},
-	title: {
-		flexGrow: 1,
-	},
-	hide: {
-		display: 'none',
-	},
-	drawer: {
-		width: drawerWidth,
-		flexShrink: 0,
-		whiteSpace: 'nowrap',
-	},
-	drawerOpen: {
-		width: drawerWidth,
-		transition: theme.transitions.create('width', {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-	},
-	drawerClose: {
-		transition: theme.transitions.create('width', {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-		overflowX: 'hidden',
-		width: theme.spacing(7) + 1,
-		[theme.breakpoints.up('sm')]: {
-			width: theme.spacing(7) + 1,
-		},
-	},
-	toolbar: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'flex-end',
-		padding: theme.spacing(0, 1),
-		// necessary for content to be below app bar
-		...theme.mixins.toolbar,
-	},
-	content: {
-		flexGrow: 1,
-		padding: theme.spacing(3),
-	},
-	small: {
-		width: theme.spacing(3),
-		height: theme.spacing(3),
-	},
-	active: {
-		background: theme.palette.action.hover
-	}
+    root: {
+        display: 'flex',
+    },
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+    },
+    appBarShift: {
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    menuButton: {
+        marginRight: 36,
+    },
+    title: {
+        flexGrow: 1,
+    },
+    hide: {
+        display: 'none',
+    },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
+    },
+    drawerOpen: {
+        width: drawerWidth,
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    drawerClose: {
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        overflowX: 'hidden',
+        width: theme.spacing(7) + 1,
+        [theme.breakpoints.up('sm')]: {
+            width: theme.spacing(7) + 1,
+        },
+    },
+    toolbar: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+    },
+    small: {
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+    },
+    active: {
+        background: theme.palette.action.hover,
+    },
 }))
 
 export default function Navbar() {
-	const router = useRouter()
-	const classes = useStyles()
-	const theme = useTheme()
-	const [open, setOpen] = React.useState(false)
-	const [anchorEl, setAnchorEl] = React.useState(null)
-	// const { user, session } = Auth.useUser()
-	// const user = useUserContext()
-	const { user } = useContext(UserContext)
-	const openAnchorEl = Boolean(anchorEl)
-	const userContext = useContext(UserContext)
+    const router = useRouter()
+    const classes = useStyles()
+    const theme = useTheme()
+    const [open, setOpen] = React.useState(false)
+    const [anchorEl, setAnchorEl] = React.useState(null)
+    // const { user, session } = Auth.useUser()
+    // const user = useUserContext()
+    const { user } = useContext(UserContext)
+    const openAnchorEl = Boolean(anchorEl)
+    const userContext = useContext(UserContext)
 
-	const handleMenu = (event) => {
-		setAnchorEl(event.currentTarget)
-	}
-	const handleClose = () => {
-		setAnchorEl(null)
-	}
-	
-	useEffect(() => {
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget)
+    }
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+
+    useEffect(() => {
         const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
             console.log('[Navbar] onAuthStateChange event: ', event)
             // Send session to /api/auth route to set the auth cookie.
@@ -139,22 +139,22 @@ export default function Navbar() {
                 credentials: 'same-origin',
                 body: JSON.stringify({ event, session }),
             })
-            .then((res) => res.json())
-            .then(() => {
-                if (event === 'SIGNED_IN') {
-                    console.log('SIGNED_IN')
-                    userContext.setUser()
-                }
-            })
+                .then((res) => res.json())
+                .then(() => {
+                    if (event === 'SIGNED_IN') {
+                        console.log('SIGNED_IN')
+                        userContext.setUser()
+                    }
+                })
         })
         return () => {
             authListener.unsubscribe()
         }
     }, [])
 
-	// useEffect(() => {
+    // useEffect(() => {
     //     // Remove user from event_users table when leaving
-	// 	console.log('[useEffect] Navbar')
+    // 	console.log('[useEffect] Navbar')
     //     const onbeforeunloadFn = () => {
     //         localStorage.setItem('color', 'red')
     //     }
@@ -165,115 +165,111 @@ export default function Navbar() {
     //     }
     // }, [])
 
-	const handleDrawerOpen = () => {
-		setOpen(true)
-	}
+    const handleDrawerOpen = () => {
+        setOpen(true)
+    }
 
-	const handleDrawerClose = () => {
-		setOpen(false)
-	}
+    const handleDrawerClose = () => {
+        setOpen(false)
+    }
 
-	const handleLogout = async () => {
-		console.log('handleLogout')
-		let { error } = await supabase.auth.signOut()
-		if (error) {
-			console.log('error: ', error)
-			return
-		}
-		router.push('/')
-	}
+    const handleLogout = async () => {
+        console.log('handleLogout')
+        let { error } = await supabase.auth.signOut()
+        if (error) {
+            console.log('error: ', error)
+            return
+        }
+        router.push('/')
+    }
 
-	return (
-		<div className={classes.root}>
-			<CssBaseline />
-			<AppBar
-				position="fixed"
-				className={clsx(classes.appBar, {
-					[classes.appBarShift]: open,
-				})}
-			>
-				<Toolbar>
-					<IconButton
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						edge="start"
-						className={clsx(classes.menuButton, {
-							[classes.hide]: open,
-						})}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant="h6" noWrap className={classes.title}>
-						ThisIsFan
-					</Typography>
-					{user && <>
-						<Box mx={2}>
-							<Badge badgeContent={user?.points} max={100} color="secondary">
-								<LoyaltyIcon />
-							</Badge>
-						</Box>
-						<IconButton
-							aria-label="account of current user"
-							aria-controls="menu-appbar"
-							aria-haspopup="true"
-							color="secondary"
-							onClick={handleMenu}
-						>
-							<Avatar alt={user.email} src="/images/avatar.png" />
-						</IconButton>
-						<Menu
-							id="menu-appbar"
-							anchorEl={anchorEl}
-							anchorOrigin={{
-								vertical: 'top',
-								horizontal: 'right',
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: 'top',
-								horizontal: 'right',
-							}}
-							open={openAnchorEl}
-							onClose={handleClose}
-						>
-							{/* <MenuItem>Profile</MenuItem> */}
-							<MenuItem>{user.email}</MenuItem>
-							<MenuItem onClick={handleLogout}>Logout</MenuItem>
-						</Menu>
-					</>}
-				</Toolbar>
-			</AppBar>
-			<div className={classes.appBarSeparator} />
-			<Drawer
-				variant="permanent"
-				className={clsx(classes.drawer, {
-					[classes.drawerOpen]: open,
-					[classes.drawerClose]: !open,
-				})}
-				classes={{
-					paper: clsx({
-						[classes.drawerOpen]: open,
-						[classes.drawerClose]: !open,
-					}),
-				}}
-			>
-				<div className={classes.toolbar}>
-					<IconButton onClick={handleDrawerClose}>{theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}</IconButton>
-				</div>
-				<Divider />
-				<List>
-					<Link href="/euro2020" passHref>
-						<ListItem button component="a" className={router.pathname == "/euro2020" ? classes.active : ""}>
-							<ListItemIcon>
-								<SportsSoccerIcon />
-							</ListItemIcon>
-							<ListItemText primary="Euro 2020" />
-						</ListItem>
-					</Link>
-				</List>
-				{/* <Divider /> */}
-			</Drawer>
-		</div>
-	)
+    return (
+        <div className={classes.root}>
+            <CssBaseline />
+            <AppBar
+                position="fixed"
+                className={clsx(classes.appBar, {
+                    [classes.appBarShift]: open,
+                })}
+            >
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        className={clsx(classes.menuButton, {
+                            [classes.hide]: open,
+                        })}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" noWrap className={classes.title}>
+                        ThisIsFan
+                    </Typography>
+                    {user && (
+                        <>
+                            <Box mx={2}>
+                                <Badge badgeContent={user?.points} max={100} color="secondary">
+                                    <LoyaltyIcon />
+                                </Badge>
+                            </Box>
+                            <IconButton aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" color="secondary" onClick={handleMenu}>
+                                <Avatar alt={user.email} src="/images/avatar.png" />
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={openAnchorEl}
+                                onClose={handleClose}
+                            >
+                                {/* <MenuItem>Profile</MenuItem> */}
+                                <MenuItem onClick={() => router.push('/profile')}>{user.email}</MenuItem>
+                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            </Menu>
+                        </>
+                    )}
+                </Toolbar>
+            </AppBar>
+            <div className={classes.appBarSeparator} />
+            <Drawer
+                variant="permanent"
+                className={clsx(classes.drawer, {
+                    [classes.drawerOpen]: open,
+                    [classes.drawerClose]: !open,
+                })}
+                classes={{
+                    paper: clsx({
+                        [classes.drawerOpen]: open,
+                        [classes.drawerClose]: !open,
+                    }),
+                }}
+            >
+                <div className={classes.toolbar}>
+                    <IconButton onClick={handleDrawerClose}>{theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}</IconButton>
+                </div>
+                <Divider />
+                <List>
+                    <Link href="/euro2020" passHref>
+                        <ListItem button component="a" className={router.pathname == '/euro2020' ? classes.active : ''}>
+                            <ListItemIcon>
+                                <SportsSoccerIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Euro 2020" />
+                        </ListItem>
+                    </Link>
+                </List>
+                {/* <Divider /> */}
+            </Drawer>
+        </div>
+    )
 }
