@@ -68,16 +68,18 @@ export default function index() {
 	const classes = useStyles()
 	const router = useRouter()
 	const { user, session } = Auth.useUser()
-	const { data, error } = useSWR(session ? ['/api/getUser', session.access_token] : null, fetcher) 
+	const { data, error } = useSWR(session ? ['/api/getUser', session.access_token] : null, fetcher)
 	const [authView, setAuthView] = useState('sign_in')
 	const [showLoginForm, setShowLoginForm] = useState(true)
 	const { snackbar, setSnackbar } = useContext(SnackbarContext)
 	const [open, setOpen] = useState(false);
 	// const [snackbar, setSnackbar] = useState({ open: false })
 	const [form, setForm] = useState('')
-	
-	
+
+
 	useEffect(() => {
+		console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
+		console.log('process.env.BASE_URL: ', process.env.NEXT_PUBLIC_BASE_URL)
 		// Get url params to check for password recovery
 		const hash = window.location.hash.substr(1);
 		console.log('hash: ', hash)
@@ -128,7 +130,7 @@ export default function index() {
 		// }
 	}, [])
 
-	function showForm () {
+	function showForm() {
 		switch (form) {
 			case 'login':
 				return <Login setForm={setForm} redirectTo={"/euro2020"} />

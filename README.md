@@ -33,4 +33,4 @@ supabase start
 
 Write down console displayed "Supabase URL" and "Supabase Key" (anon) in .env.local file.
 
-When updating table structures, be mindful of impact on database replications (supabase admin) as well as on postgres trigger functions.
+When updating postgres table structures, be mindful of the impact on database replications (supabase admin) as well as on postgres trigger functions.
