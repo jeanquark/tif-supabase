@@ -34,7 +34,7 @@ function Copyright() {
                 {'.'}
             </Typography>
             <Typography variant="caption" color="textSecondary" display="block" align="center">
-                Last successful deployment: Wednesday June 9, 19:41.
+                Last successful deployment: Thursday June 10, 14:51.
             </Typography>
         </>
     )

@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     actionCard: {
+        textAlign: 'center',
         '&:hover': {
             cursor: 'pointer',
             background: theme.palette.primary.main,
@@ -96,34 +97,6 @@ export default function ActionList(props) {
             console.log('[useEffect] getActionsAndSubscribe() id: ', id)
             if (id != undefined) {
                 getActionsAndSubscribe(id)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
             return async () => {
                 // 1) Remove subscription
@@ -393,18 +366,18 @@ export default function ActionList(props) {
             <CssBaseline />
             <h1 style={{ textAlign: 'center' }}>Actions:</h1>
             <br />
-            <Box display="flex" style={{ border: '1px solid orange' }}>
-                <h3>Event users:</h3>
+            <h3 style={{ marginBottom: 5 }}>Players online:</h3>
+            <Box display="flex" style={{ border: '0px solid orange' }}>
                 {/* <AvatarGroup max={4}> */}
                 {eventUsers.map((eventUser) => (
-                    <Tooltip title={eventUser.users?.username || 'anonymous'} placement="left" key={eventUser.id}>
+                    <Tooltip title={eventUser.username || 'anonymous'} placement="top" key={eventUser.id}>
                         <Avatar alt="def" src={`/images/avatar.png`} />
                     </Tooltip>
                 ))}
                 {/* </AvatarGroup> */}
             </Box>
-            <h3>Choose action:</h3>
-            <Box display="flex" style={{ border: '1px solid red' }}>
+            <h3 style={{ marginBottom: 5 }}>Choose action:</h3>
+            <Box display="flex" style={{ border: '0px solid red' }}>
                 {actions.map((action) => (
                     <Box m={1} p={0} key={action.id}>
                         <Paper elevation={1} className={classes.actionCard} style={{ padding: '10px' }} onClick={() => createAction(action.id)}>
@@ -414,12 +387,12 @@ export default function ActionList(props) {
                     </Box>
                 ))}
             </Box>
-            <h3>Event actions:</h3>
-            <Box style={{ maxHeight: '450px', overflow: 'auto', border: '1px solid green' }}>
+            <h3 style={{ marginBottom: 5 }}>Event actions:</h3>
+            <Box style={{ maxHeight: '450px', overflow: 'auto', border: '0px solid green' }}>
                 <Paper square className={classes.paper}>
-                    <Typography className={classes.text} variant="h5" gutterBottom>
+                    {/* <Typography className={classes.text} variant="h5" gutterBottom>
                         Event actions
-                    </Typography>
+                    </Typography> */}
                     <List className={classes.list}>
                         {eventActions.map((eventAction) => (
                             <ActionCard eventAction={eventAction} onJoinAction={handleJoinAction} onDeleteAction={handleDeleteAction} key={eventAction.id} />

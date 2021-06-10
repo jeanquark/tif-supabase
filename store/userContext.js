@@ -39,11 +39,6 @@ export function UserContextProvider(props) {
     const context = {
         user,
         setUser: setUserHandler
-        // user: {
-        //     email: 'jm.kleger@ik.me',
-        //     firstname: 'Jean-Marc',
-        //     points: 10
-        // }
     };
 
     return (

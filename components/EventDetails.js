@@ -5,6 +5,10 @@ import { supabase } from '../lib/initSupabase'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, Paper, Avatar, Typography, NoSsr } from '@material-ui/core'
 import Moment from 'react-moment'
+import moment from 'moment'
+import Countdown, { calcTimeDelta, zeroPad } from 'react-countdown'
+import { RestoreOutlined } from '@material-ui/icons'
+
 
 const useStyles = makeStyles((theme) => ({
     avatar: {
@@ -83,6 +87,23 @@ export default function EventDetails() {
         }
     }
 
+    const renderer = ({ hours, minutes, seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+            return ''
+        } else {
+            // Render a countdown
+            // return <span>{zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}</span>;
+            return calcTimeDelta(Date.now() + 1000).minutes
+        }
+    };
+
+    const displayResult = () => {
+        return <Typography component="p" align="center">
+            <b>{event.home_team_score}</b>&nbsp;:&nbsp;<b>{event.visitor_team_score}</b>
+        </Typography>
+    }
+
     return (
         <Box>
             <Box display="flex" style={{ margin: 10, padding: 8 }}>
@@ -94,9 +115,7 @@ export default function EventDetails() {
                     <Typography variant="h5" align="center">
                         {event.home_team_name} - {event.visitor_team_name}
                     </Typography>
-                    {/* <Typography component="p" align="center">
-                        <b>{event.home_team_score}</b>&nbsp;:&nbsp;<b>{event.visitor_team_score}</b>
-                    </Typography> */}
+                    {displayResult()}
                     <Typography component="p" align="center">
                         <b>{event.venue_name}</b>,&nbsp;<b>{event.city}</b>
                     </Typography>

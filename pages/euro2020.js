@@ -230,6 +230,22 @@ export default function euro2020() {
         return array
     }
 
+    const displayScore = (fixture) => {
+        if (parseInt(fixture.timestamp) <= parseInt(moment().utc().unix())) {
+            return (<TableCell align="center">
+                {fixture.home_team_score} - {fixture.visitor_team_score}
+            </TableCell>)
+        } else {
+            return (
+                <TableCell align="center">
+                    <Moment local format="DD-MM HH:mm">
+                        {fixture.date}
+                    </Moment>
+                </TableCell>
+            )
+        }
+    }
+
     const redirectTo = (link) => {
         console.log('redirectTo: ', link)
         router.push(`/events/${link}`)
@@ -263,9 +279,9 @@ export default function euro2020() {
                         </ul>
                     </Grid> */}
 
-                    <Grid container alignItems="center" justify="center" className={classes.root} style={{ paddingTop: '0px', marginTop: '0px', border: '2px solid red' }}>
-                        <Grid container item style={{ border: '2px solid green' }}>
-                            <Grid container item direction="column" justify="flex-start" sm={12} md={3} style={{ border: '2px solid pink' }}>
+                    <Grid container alignItems="center" justify="center" className={classes.root} style={{ paddingTop: '0px', marginTop: '0px', border: '0px solid red' }}>
+                        <Grid container item style={{ border: '0px solid green' }}>
+                            <Grid container item direction="column" justify="flex-start" sm={12} md={3} style={{ border: '0px solid pink' }}>
                                 <Typography variant="h6" className={classes.typography}>Next fixtures</Typography>
                                 {nextFixtures.map((fixture) => (
                                     <Box my={5} key={fixture.id} className={classes.box}>
@@ -339,14 +355,7 @@ export default function euro2020() {
                                                                     <Avatar className={classes.avatar} src={`/images/countries_euro2020/${fixture.home_team_id}.png`} />
                                                                     <span className={classes.inline}>{fixture.home_team_name}</span>
                                                                 </TableCell>
-                                                                {/* <TableCell align="center">
-                                                            {fixture.home_team_score} - {fixture.visitor_team_score}
-                                                        </TableCell> */}
-                                                                <TableCell align="center">
-                                                                    <Moment local format="DD-MM HH:mm">
-                                                                        {fixture.date}
-                                                                    </Moment>
-                                                                </TableCell>
+                                                                {displayScore(fixture)}
                                                                 <TableCell align="right">
                                                                     <span className={classes.inline}>{fixture.visitor_team_name}</span>
                                                                     <Avatar className={classes.avatar} src={`/images/countries_euro2020/${fixture.visitor_team_id}.png`} />

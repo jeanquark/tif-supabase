@@ -60,8 +60,8 @@ export default function Profile() {
                 <div className={classes.appBarSpacer} />
 
                 <Container maxWidth="lg" className={classes.container}>
-                    user.email: {user?.email} - user.id: {user?.id} - user.username: {user?.username}
                     <Grid container spacing={3} justify="center">
+
                         <Grid item xs={12} sm={8} md={6}>
                             <form className={classes.form} noValidate onSubmit={updateUser}>
                                 <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Username" name="username" autoComplete="username" autoFocus />
@@ -69,6 +69,12 @@ export default function Profile() {
                                     Update
                                 </Button>
                             </form>
+                            <p>
+                                <b>User info:</b><br />
+                                ID: {user?.id}<br />
+                                Email: {user?.email}<br />
+                                Username: {user?.username}<br />
+                        </p>
                         </Grid>
                     </Grid>
                 </Container>
