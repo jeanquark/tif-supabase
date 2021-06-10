@@ -88,6 +88,8 @@ jobs:
                 envkey_NEXT_PUBLIC_BASE_URL: https://thisisfan.com
                 envkey_NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
                 envkey_NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+                envkey_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+                envkey_API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
             - name: 💾 Install
               run: npm install
             - name: 🔨 Build

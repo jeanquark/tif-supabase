@@ -173,7 +173,7 @@ export default function euro2020() {
     }, [updateEvent])
 
     const fetchStandings = async () => {
-        let { data: standings, error } = await supabase.from('standings').select('*').order('group_name', true)
+        let { data: standings, error } = await supabase.from('standings').select('*').order('group_name', true).order('rank', true)
         if (error) console.log('error', error)
         else {
             console.log('standings: ', standings)

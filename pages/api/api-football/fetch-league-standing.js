@@ -15,7 +15,7 @@ export default async function fetchLeagueTeams(req, res) {
 
         console.log('response.length: ', response.length)
         // console.log('response[0][league]: ', response[0]['league'])
-        console.log('response[0][league][standings]: ', response[0]['league']['standings'])
+        // console.log('response[0][league][standings]: ', response[0]['league']['standings'])
 
         let array = []
         for (let i = 0; i < response[0]['league']['standings'].length; i++) {
@@ -38,15 +38,16 @@ export default async function fetchLeagueTeams(req, res) {
                         all_goals_against: response[0]['league']['standings'][i][j]['all']['goals']['against']
                     })
                 }
-                
             }
         }
-        console.log('array: ', array)
-        const { data, error } = await supabase.from('standings').upsert(array)
-        console.log('error: ', error)
-        console.log('data: ', data)
 
-        return res.status(200).json({ success: true, length: response.length, data: response })
+        // 2) Load DB
+        // console.log('array: ', array)
+        const { data, error } = await supabase.from('standings').upsert(array, { onConflict: ['league_id', 'team_id'] })
+        console.log('error: ', error)
+        // console.log('data: ', data)
+
+        return res.status(200).json({ success: true, length: response.length })
     } catch (error) {
         return res.status(500).json('An error occured on the server: ', error)
     }

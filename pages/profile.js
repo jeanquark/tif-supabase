@@ -74,7 +74,7 @@ export default function Profile() {
                                 ID: {user?.id}<br />
                                 Email: {user?.email}<br />
                                 Username: {user?.username}<br />
-                        </p>
+                            </p>
                         </Grid>
                     </Grid>
                 </Container>

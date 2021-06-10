@@ -5,9 +5,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+# install dependencies
+npm install
+# run in dev mode
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -34,3 +35,8 @@ supabase start
 Write down console displayed "Supabase URL" and "Supabase Key" (anon) in .env.local file.
 
 When updating postgres table structures, be mindful of the impact on database replications (supabase admin) as well as on postgres trigger functions.
+
+## Cron job
+
+*/1 * * * * wget https://thisisfan.com/api/api-football/fetch-live-fixtures
+0 30 * ? * * wget https://thisisfan.com/api/api-football/fetch-league-standing

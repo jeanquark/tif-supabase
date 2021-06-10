@@ -26,12 +26,12 @@ export default async function fetchNextFixtures(req, res) {
                 visitor_team_score: response[i]['goals']['away']
             })
         }
-        console.log('array: ', array)
-        // const { data, error } = await supabase
-        //     .from('events').upsert(array, { onConflict: 'fixture_id'})
+        // console.log('array: ', array)
+        const { data, error } = await supabase
+            .from('events').upsert(array, { onConflict: 'fixture_id'})
 
         return res.status(200).json({ success: true, array })
-        return res.status(200).json({ success: true, length: response.length, data: response });
+        // return res.status(200).json({ success: true, length: response.length, data: response });
     } catch (error) {
         return res.status(500).json('An error occured on the server: ', error);
 

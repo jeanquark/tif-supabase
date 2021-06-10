@@ -63,7 +63,7 @@ export default function europe({ onSelectCountry }) {
             obj['fixtures'] = stadiumFixtures
             console.log('obj: ', obj)
 
-            await delay(200)
+            await delay(100)
 
             setStadiums({
                 ...stadiums,
@@ -196,7 +196,7 @@ export default function europe({ onSelectCountry }) {
                 ) : (
                     <Grid container alignItems="center" justify="center">
                         <Skeleton variant="text" width={140} height={30} />
-                        <Skeleton variant="rect" width={240} height={140} />
+                        <Skeleton variant="rect" width={240} height={150} />
                         <Grid item container display="flex" justify="flex-start">
                             <Skeleton variant="text" width={60} height={30} align="left" style={{ marginRight: '.5em' }} />
                             <Skeleton variant="text" width={60} height={30} />
