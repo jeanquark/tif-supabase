@@ -1,0 +1,17 @@
+{
+	"h1": "A simple example",
+	"change-locale": "Change locale",
+	"to-second-page": "To second page",
+	"error-with-status": "A {{statusCode}} error occurred on server",
+	"error-without-status": "An error occurred on the server",
+	"title": "Home | next-i18next",
+	"enter-as-guest": "Enter as guest",
+	"sign-in": "Sign in",
+	"email_address": "Email address",
+	"password": "Password",
+	"google-login": "Google Login",
+	"do-not-have-account": "Don't have an account? Sign Up!",
+	"forgot-password": "Forgot password?",
+	"copyright": "Copyright",
+	"remember_me": "Remember me"
+}

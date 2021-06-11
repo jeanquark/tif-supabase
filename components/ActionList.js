@@ -48,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
     },
+    actionsList: {
+        maxHeight: '450px', overflow: 'auto', border: `2px solid ${theme.palette.primary.main}`
+    },
     actionCard: {
         textAlign: 'center',
         '&:hover': {
@@ -126,7 +129,7 @@ export default function ActionList(props) {
             if (updateAction) {
                 const index = eventActions.findIndex((a) => a.id == updateAction.id)
                 console.log('index: ', index)
-                
+
                 let newActions = [...eventActions]
                 newActions[index]['number_participants'] = updateAction.number_participants
                 newActions[index]['is_completed'] = updateAction.is_completed
@@ -187,7 +190,7 @@ export default function ActionList(props) {
                         newEventUsers.push(updateEventUsers)
                         console.log('newEventUsers: ', newEventUsers)
                         setEventUsers(newEventUsers)
-                    } 
+                    }
                 } else {
                     newEventUsers.splice(index, 1)
                     setEventUsers(newEventUsers)
@@ -368,12 +371,13 @@ export default function ActionList(props) {
             <br />
             <h3 style={{ marginBottom: 5 }}>Players online:</h3>
             <Box display="flex" style={{ border: '0px solid orange' }}>
-                {/* <AvatarGroup max={4}> */}
-                {eventUsers.map((eventUser) => (
-                    <Tooltip title={eventUser.username || 'anonymous'} placement="top" key={eventUser.id}>
-                        <Avatar alt="def" src={`/images/avatar.png`} />
-                    </Tooltip>
-                ))}
+                {eventUsers.length ?
+                    eventUsers.map((eventUser) => (
+                        <Tooltip title={eventUser.username || 'anonymous'} placement="top" key={eventUser.id}>
+                            <Avatar alt="def" src={`/images/avatar.png`} />
+                        </Tooltip>
+                    )) : 'no logged in users at the minute.'
+                }
                 {/* </AvatarGroup> */}
             </Box>
             <h3 style={{ marginBottom: 5 }}>Choose action:</h3>
@@ -388,7 +392,7 @@ export default function ActionList(props) {
                 ))}
             </Box>
             <h3 style={{ marginBottom: 5 }}>Event actions:</h3>
-            <Box style={{ maxHeight: '450px', overflow: 'auto', border: '0px solid green' }}>
+            <Box className={classes.actionsList} style={{}}>
                 <Paper square className={classes.paper}>
                     {/* <Typography className={classes.text} variant="h5" gutterBottom>
                         Event actions

@@ -36,7 +36,11 @@ Write down console displayed "Supabase URL" and "Supabase Key" (anon) in .env.lo
 
 When updating postgres table structures, be mindful of the impact on database replications (supabase admin) as well as on postgres trigger functions.
 
-## Cron job
+## Cron jobs
 
+![cronjobs](/images/cronjobs.jpg)
+
+```
 */1 * * * * wget https://thisisfan.com/api/api-football/fetch-live-fixtures
 0 30 * ? * * wget https://thisisfan.com/api/api-football/fetch-league-standing
+```

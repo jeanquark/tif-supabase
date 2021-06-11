@@ -8,6 +8,7 @@ import Snackbar from '../components/Snackbar'
 import Modal from '../components/Modal'
 import { Auth } from '@supabase/ui'
 import { supabase } from '../lib/initSupabase'
+import { appWithTranslation } from 'next-i18next'
 import { UserContextProvider } from '../store/userContext'
 import { EventsContextProvider } from '../store/eventsContext'
 import { ActionsContextProvider } from '../store/actionsContext'
@@ -15,7 +16,7 @@ import { ModalContextProvider } from '../store/modalContext'
 import { DialogContextProvider } from '../store/dialogContext'
 import { SnackbarContextProvider } from '../store/snackbarContext'
 
-export default function MyApp(props) {
+const MyApp = (props) => {
     const { Component, pageProps } = props
     // const { user, session } = Auth.useUser()
 
@@ -66,3 +67,5 @@ MyApp.propTypes = {
     Component: PropTypes.elementType.isRequired,
     pageProps: PropTypes.object.isRequired,
 }
+
+export default appWithTranslation(MyApp)

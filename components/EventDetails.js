@@ -31,10 +31,13 @@ export default function EventDetails() {
     const router = useRouter()
     const { id } = router.query
     const classes = useStyles()
-    let mySubscription = null
+    // let mySubscription = null
+    let subscriptionEvents = null
     const [event, setEvent] = useState('')
-    const [updateEvent, handleUpdateEvent] = useState('')
+    const [updateEvent, handleUpdateEvent] = useState(null)
     const [error, setError] = useState('')
+    const [timer, setTimer] = useState(12572000)
+    const [timeToEvent, setTimeToEvent] = useState(null)
 
     useEffect(() => {
         console.log('[useEffect] id: ', id)
@@ -42,7 +45,7 @@ export default function EventDetails() {
             getEventAndSubscribe(id)
         }
         return async () => {
-            const { data } = await supabase.removeSubscription(mySubscription)
+            const { data } = await supabase.removeSubscription(subscriptionEvents)
             console.log('Remove supabase subscription by useEffect unmount. data: ', data)
         }
     }, [id])
@@ -50,6 +53,9 @@ export default function EventDetails() {
     useEffect(() => {
         try {
             console.log('[useEffect] updateEvent: ', updateEvent)
+            if (updateEvent) {
+                setEvent(updateEvent)
+            }
         } catch (error) {
             console.log('error: ', error)
         }
@@ -63,8 +69,8 @@ export default function EventDetails() {
             .eq('id', id)
         if (error) {
             setError(error.message)
-            supabase.removeSubscription(mySubscription)
-            mySubscription = null
+            supabase.removeSubscription(subscriptionEvents)
+            subscriptionEvents = null
             return
         }
         setEvent(data[0])
@@ -74,8 +80,8 @@ export default function EventDetails() {
         console.log('getEventAndSubscribe. id: ', id)
         setError('')
         getInitialEvent(id)
-        if (!mySubscription) {
-            mySubscription = supabase
+        if (!subscriptionEvents) {
+            subscriptionEvents = supabase
                 .from(`events:id=eq.${id}`)
                 .on('UPDATE', (payload) => {
                     console.log('UPDATE')
@@ -83,7 +89,7 @@ export default function EventDetails() {
                 })
                 .subscribe()
         } else {
-            supabase.removeSubscription(mySubscription)
+            supabase.removeSubscription(subscriptionEvents)
         }
     }
 
@@ -98,10 +104,19 @@ export default function EventDetails() {
         }
     };
 
-    const displayResult = () => {
-        return <Typography component="p" align="center">
-            <b>{event.home_team_score}</b>&nbsp;:&nbsp;<b>{event.visitor_team_score}</b>
-        </Typography>
+    const displayResult = (timeToEvent) => {
+        if (parseInt(event.timestamp) <= parseInt(moment().unix())) {
+            return <Typography component="p" align="center">
+                {event.home_team_score} : {event.visitor_team_score}
+            </Typography>
+        }
+        return (
+            <Countdown
+                date={Date.now() + (timeToEvent)}
+                renderer={props => <Typography component="p" align="center">
+                    {'Starts in '}{zeroPad(props.days)}:{zeroPad(props.hours)}:{zeroPad(props.minutes)}:{zeroPad(props.seconds)}
+                </Typography>}
+            />)
     }
 
     return (
@@ -115,7 +130,11 @@ export default function EventDetails() {
                     <Typography variant="h5" align="center">
                         {event.home_team_name} - {event.visitor_team_name}
                     </Typography>
-                    {displayResult()}
+                    {/* <NoSsr> */}
+                        {event && displayResult(parseInt(event.timestamp - moment().unix()) * 1000)}
+                        {/* {event && displayResult(parseInt(event.timestamp))} */}
+                        {/* {displayResult(12572000)} */}
+                    {/* </NoSsr> */}
                     <Typography component="p" align="center">
                         <b>{event.venue_name}</b>,&nbsp;<b>{event.city}</b>
                     </Typography>

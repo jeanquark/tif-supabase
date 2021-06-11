@@ -22,23 +22,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { UserWrapper } from '../store/userContext'
 import UserContext from '../store/userContext'
 
-function Copyright() {
-    return (
-        <>
-            <Typography variant="body2" color="textSecondary" align="center">
-                {'Copyright © '}
-                <Link color="inherit" href="https://material-ui.com/">
-                    TIF
-                </Link>{' '}
-                {new Date().getFullYear()}
-                {'.'}
-            </Typography>
-            <Typography variant="caption" color="textSecondary" display="block" align="center">
-                Last successful deployment: Friday June 11, 01:00.
-            </Typography>
-        </>
-    )
-}
+import { useTranslation } from 'next-i18next'
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -120,6 +106,7 @@ export default function Login(props) {
         },
     })
     const userContext = useContext(UserContext)
+    const { t } = useTranslation('common')
 
     useEffect(() => {
         const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
@@ -175,23 +162,41 @@ export default function Login(props) {
         }
     }
 
+    function Copyright() {
+        return (
+            <>
+                <Typography variant="body2" color="textSecondary" align="center">
+                    {t('copyright')} {'©'}
+                    <Link color="inherit" href="https://material-ui.com/">
+                        TIF
+                    </Link>{' '}
+                    {new Date().getFullYear()}
+                    {'.'}
+                </Typography>
+                <Typography variant="caption" color="textSecondary" display="block" align="center">
+                    Last successful deployment: Friday June 11, 18:36.
+                </Typography>
+            </>
+        )
+    }
+
     return (
         <div className={classes.paper}>
             <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-                Sign in
+                {t('sign-in')}
             </Typography>
             <form className={classes.form} noValidate onSubmit={signInUser}>
-                <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
+                <TextField variant="outlined" margin="normal" required fullWidth id="email" label={t('email_address')} name="email" autoComplete="email" autoFocus />
                 <TextField
                     variant="outlined"
                     margin="normal"
                     required
                     fullWidth
                     name="password"
-                    label="Password"
+                    label={t('password')}
                     type="password"
                     id="password"
                     autoComplete="current-password"
@@ -199,24 +204,24 @@ export default function Login(props) {
                     helperText={errors.password.message}
                 />
 
-                <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                <FormControlLabel control={<Checkbox value="remember" color="primary" />} label={t('remember_me')} />
                 <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                    Sign In
+                    {t('sign-in')}
                 </Button>
                 <Grid style={{ marginTop: 20 }}>
                     <Button variant="contained" fullWidth classes={{ root: classes.button }} onClick={googleOAuthHandler}>
-                        Google login
+                        {t('google-login')}
                     </Button>
                 </Grid>
                 <Box mt={3}>
                     <Grid container justify="space-between">
                         <Grid item>
                             <Button color="secondary" onClick={() => props.setForm('register')}>
-                                Don't have an account? Sign Up!
+                                {t('do-not-have-account')}
                             </Button>
                         </Grid>
                         <Grid item>
-                            <Button color="secondary" onClick={() => props.setForm('forgot-password')}>Forgot password?</Button>
+                            <Button color="secondary" onClick={() => props.setForm('forgot-password')}>{t('forgot-password')}</Button>
                         </Grid>
                     </Grid>
                 </Box>

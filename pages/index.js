@@ -27,6 +27,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { RestaurantTwoTone } from '@material-ui/icons'
 
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -51,7 +54,7 @@ const fetcher = (url, token) =>
 		credentials: 'same-origin',
 	}).then((res) => res.json())
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req, locale }) {
 	// console.log('getServerSideProps req: ', req)
 	const { user } = await supabase.auth.api.getUserByCookie(req)
 	console.log('[index] getServerSideProps user: ', user)
@@ -61,7 +64,7 @@ export async function getServerSideProps({ req }) {
 	}
 
 	// If there is a user, return it.
-	return { props: { user } }
+	return { props: { user, ...await serverSideTranslations(locale, ['common']) } }
 }
 
 export default function index() {
@@ -75,6 +78,7 @@ export default function index() {
 	const [open, setOpen] = useState(false);
 	// const [snackbar, setSnackbar] = useState({ open: false })
 	const [form, setForm] = useState('')
+	const { t } = useTranslation('common')
 
 
 	useEffect(() => {
@@ -137,12 +141,20 @@ export default function index() {
 					<Grid container spacing={0} direction="column" alignItems="center" justify="center" style={{ minHeight: '100vh' }}>
 						<Grid item xs={3} style={{ paddingBottom: 0 }}>
 							<Link href="/euro2020" passHref>
-								<Button component="a" variant="contained" color="primary" size="large">
-									enter as guest
+								<Button component="a" variant="contained" color="primary" size="large" style={{ whiteSpace: 'nowrap' }}>
+									{t('enter-as-guest')}
                                 </Button>
 							</Link>
 						</Grid>
 					</Grid>
+					{/* <Link
+						href='/'
+						locale={router.locale === 'fr' ? 'en' : 'fr'}
+					>
+						<button>
+							{t('change-locale')}
+						</button>
+					</Link> */}
 				</Grid>
 				<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
 					{showForm()}

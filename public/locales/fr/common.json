@@ -1,0 +1,17 @@
+{
+	"h1": "Un exemple simple",
+	"change-locale": "Change locale",
+	"to-second-page": "Vers la deuxième page",
+	"error-with-status": "Une erreur ({{statusCode}}) est survenue au niveau du serveur",
+	"error-without-status": "Une erreur est survenue au niveau du serveur",
+	"title": "Accueil | next-i18next",
+	"enter-as-guest": "Entrer comme invité",
+	"sign-in": "Login",
+	"email_address": "Addresse E-mail",
+	"password": "Mot de passe",
+	"google-login": "Google Login",
+	"do-not-have-account": "Pas encore de compte? Inscrivez-vous!",
+	"forgot-password": "Mot de passe oublié?",
+	"copyright": "Tous droits réservés",
+	"remember_me": "Se souvenir de moi"
+}
