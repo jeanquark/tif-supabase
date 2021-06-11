@@ -5,7 +5,7 @@ const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.
 export default async function fetchNextFixtures(req, res) {
     try {
         // 1) Request data from Football API
-        const data = await fetch('https://v3.football.api-sports.io/fixtures?league=652&live=all', {
+        const data = await fetch('https://v3.football.api-sports.io/fixtures?league=4&live=all', {
             method: 'GET',
             headers: {
                 'x-rapidapi-key': process.env.API_FOOTBALL_KEY,
@@ -26,7 +26,7 @@ export default async function fetchNextFixtures(req, res) {
                 visitor_team_score: response[i]['goals']['away'],
             })
         }
-        // console.log('array: ', array)
+        console.log('array: ', array)
         const { error } = await supabase.from('events').upsert(array, { onConflict: 'fixture_id' })
         console.log('error: ', error)
 
