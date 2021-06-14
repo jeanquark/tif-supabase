@@ -32,6 +32,11 @@ import { Router } from 'next/router'
 import moment from 'moment'
 import EventsContext from '../store/eventsContext'
 
+import {
+    CSSTransition,
+    TransitionGroup,
+} from 'react-transition-group'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -308,36 +313,44 @@ export default function euro2020() {
                         <Grid container item style={{ border: '0px solid green' }}>
                             <Grid container item direction="column" justify="flex-start" sm={12} md={3} style={{ border: '0px solid pink' }}>
                                 <Typography variant="h6" className={classes.typography}>Next fixtures</Typography>
-                                {nextFixtures.map((fixture) => (
-                                    <Box my={5} key={fixture.id} className={classes.box}>
-                                        <Link href={`/events/${fixture.id}`}>
-                                            <Card>
-                                                <CardActionArea>
-                                                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                                        <CardMedia className={classes.media} title="Flags">
-                                                            <div className={classes.flag}>
-                                                                <Avatar variant="square" alt="Country flag" src={`/images/countries_euro2020/${fixture.home_team_image}`} />
-                                                                <Avatar variant="square" alt="Country flag" src={`/images/countries_euro2020/${fixture.visitor_team_image}`} className={classes.small} />
+                                <TransitionGroup className="todo-list">
+                                    {nextFixtures.map((fixture) => (
+                                        <CSSTransition
+                                            key={fixture.id}
+                                            timeout={1500}
+                                            classNames="item"
+                                        >
+                                            <Box my={5} key={fixture.id} className={classes.box}>
+                                                <Link href={`/events/${fixture.id}`}>
+                                                    <Card>
+                                                        <CardActionArea>
+                                                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                                                <CardMedia className={classes.media} title="Flags">
+                                                                    <div className={classes.flag}>
+                                                                        <Avatar variant="square" alt="Country flag" src={`/images/countries_euro2020/${fixture.home_team_image}`} />
+                                                                        <Avatar variant="square" alt="Country flag" src={`/images/countries_euro2020/${fixture.visitor_team_image}`} className={classes.small} />
+                                                                    </div>
+                                                                </CardMedia>
                                                             </div>
-                                                        </CardMedia>
-                                                    </div>
-                                                    <CardContent style={{}}>
-                                                        <Typography gutterBottom variant="h6" component="h3" className={classes.typography}>
-                                                            {fixture.home_team_name} - {fixture.visitor_team_name}
-                                                        </Typography>
+                                                            <CardContent style={{}}>
+                                                                <Typography gutterBottom variant="h6" component="h3" className={classes.typography}>
+                                                                    {fixture.home_team_name} - {fixture.visitor_team_name}
+                                                                </Typography>
 
-                                                        <Typography variant="body2" color="textSecondary" component="p">
-                                                            {fixture.venue_name}, {fixture.city}.
+                                                                <Typography variant="body2" color="textSecondary" component="p">
+                                                                    {fixture.venue_name}, {fixture.city}.
                                                         </Typography>
-                                                        <Typography variant="caption" color="textPrimary" component="p">
-                                                            <Moment format="ddd Do MMM YYYY HH:mm">{fixture.date}</Moment>
-                                                        </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Card>
-                                        </Link>
-                                    </Box>
-                                ))}
+                                                                <Typography variant="caption" color="textPrimary" component="p">
+                                                                    <Moment format="ddd Do MMM YYYY HH:mm">{fixture.date}</Moment>
+                                                                </Typography>
+                                                            </CardContent>
+                                                        </CardActionArea>
+                                                    </Card>
+                                                </Link>
+                                            </Box>
+                                        </CSSTransition>
+                                    ))}
+                                </TransitionGroup>
                             </Grid>
 
                             <Grid item sm={12} md={9} align="right">

@@ -21,10 +21,9 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import { UserWrapper } from '../store/userContext'
 import UserContext from '../store/userContext'
+import ModalContext from '../store/modalContext'
 
 import { useTranslation } from 'next-i18next'
-
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -106,6 +105,7 @@ export default function Login(props) {
         },
     })
     const userContext = useContext(UserContext)
+    const { modal, setModal } = useContext(ModalContext)
     const { t } = useTranslation('common')
 
     useEffect(() => {
@@ -121,6 +121,7 @@ export default function Login(props) {
             })
                 .then((res) => res.json())
                 .then(() => {
+                    setModal({ open: false })
                     if (event === 'SIGNED_IN') {
                         console.log('SIGNED_IN')
                         userContext.setUser()

@@ -12,6 +12,8 @@ import Navbar from '../../components/Navbar'
 import Login from '../../components/Login'
 import { Container, Grid, AppBar, Toolbar, Box, Button, Typography, IconButton, Menu, MenuItem } from '@material-ui/core'
 
+import { useTranslation } from 'next-i18next'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -42,20 +44,21 @@ const Event = () => {
     const classes = useStyles()
     const { user, session } = Auth.useUser()
     const [event, setEvent] = useState([])
-    const [component, setComponent] = useState('actionList')
+    const { t } = useTranslation('common')
+    // const [component, setComponent] = useState('actionList')
 
-    function showComponent () {
-		switch (component) {
-            case 'actionList':
-				return <ActionList setComponent={setComponent} />
-				break
-			case 'login':
-				return <Login setComponent={setComponent} />
-				break
-			default:
-				return <ActionList setComponent={setComponent} />
-		}
-	}
+    // function showComponent () {
+	// 	switch (component) {
+    //         case 'actionList':
+	// 			return <ActionList setComponent={setComponent} />
+	// 			break
+	// 		case 'login':
+	// 			return <Login setComponent={setComponent} />
+	// 			break
+	// 		default:
+	// 			return <ActionList setComponent={setComponent} />
+	// 	}
+	// }
 
     return (
         <div className={classes.root}>

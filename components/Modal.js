@@ -35,19 +35,16 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: 500,
         overflow: 'auto',
         backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
+        border: `2px solid ${theme.palette.primary.main}`,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
     },
 }))
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10
-}
 
 function getModalStyle() {
-    const top = 50 + rand()
-    const left = 50 + rand()
+    const top = 50
+    const left = 50
 
     return {
         top: `${top}%`,
@@ -69,7 +66,7 @@ export default function SimpleModal(props) {
     const [modalStyle] = useState(getModalStyle)
     // const [open, setOpen] = useState(false)
     const { modal, setModal } = useContext(ModalContext)
-    const [form, setForm] = useState('reset-password')
+    const [form, setForm] = useState('login')
 
     const handleOpen = () => {
         setModal({ open: true })

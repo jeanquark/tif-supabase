@@ -376,7 +376,7 @@ export default function ActionList(props) {
                         <Tooltip title={eventUser.username || 'anonymous'} placement="top" key={eventUser.id}>
                             <Avatar alt="def" src={`/images/avatar.png`} />
                         </Tooltip>
-                    )) : 'no logged in users at the minute.'
+                    )) : 'No logged in users at the moment.'
                 }
                 {/* </AvatarGroup> */}
             </Box>
