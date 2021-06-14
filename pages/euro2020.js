@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import { supabase } from '../lib/initSupabase'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -98,7 +98,24 @@ export default function euro2020() {
     const [standingsByGroup, setStandingsByGroup] = useState([[]])
     const [country, setCountry] = useState('europe-uefa-euro2020')
     const [updateEvent, handleUpdateEvent] = useState([])
+    const fixturesRef = useRef()
+    fixturesRef.current = fixtures
     let subscriptionEvents = null
+
+    useEffect(() => {
+        try {
+            // console.log('[useEffect] default')
+            // console.log('[useEffect] default fixturesRef.current: ', fixturesRef.current)
+            subscribeToEvents()
+            return async () => {
+                // 1) Remove subscription
+                const { data } = await supabase.removeSubscription(subscriptionEvents)
+                console.log('[useEffect] Remove supabase subscription by useEffect unmount. data: ', data)
+            }
+        } catch (error) {
+            console.log('error: ', error)
+        }
+    }, [])
 
     useEffect(() => {
         console.log('useEffect')
@@ -123,27 +140,6 @@ export default function euro2020() {
             array[index].push(fixtures[i])
         }
         setFixturesByGroup(array)
-        subscriptionEvents = supabase
-            .from(`events:league_id=eq.4`)
-            .on('UPDATE', (payload) => {
-                console.log('[UPDATE]: ', payload)
-                console.log('fixtures: ', fixtures)
-                const index = fixtures.findIndex((a) => a.id == payload.new.id)
-                console.log('index: ', index)
-                if (index != -1) {
-                    // 1) Update fixtures array
-                    let newFixtures = [...fixtures]
-                    console.log('newFixtures: ', newFixtures)
-                    newFixtures[index] = updateEvent
-                    setFixtures(newFixtures)
-
-                    // 2) Update fixturesByGroup object
-                    updateFixturesByGroup(newFixtures)
-                }
-                // handleUpdateEvent(payload.new)
-            })
-            .subscribe()
-        console.log('subscriptionEvents: ', subscriptionEvents)
     }, [fixtures])
 
     useEffect(() => {
@@ -171,6 +167,35 @@ export default function euro2020() {
             console.log('error: ', error)
         }
     }, [updateEvent])
+
+    const subscribeToEvents = async () => {
+        // console.log('getSubscriptions: ', supabase.getSubscriptions())
+        // console.log('subscriptionEvents 2: ', subscriptionEvents)
+        if (!subscriptionEvents) {
+            supabase
+                .from(`events:league_id=eq.4`)
+                .on('UPDATE', (payload) => {
+                    console.log('[UPDATE] payload: ', payload)
+                    // console.log('fixtures: ', fixtures)
+                    // console.log('fixturesRef.current: ', fixturesRef.current)
+                    // console.log('updateEvent: ', updateEvent)
+                    const index = fixturesRef.current.findIndex((a) => a.id == payload.new.id)
+                    console.log('index: ', index)
+                    if (index != -1) {
+                        // 1) Update fixtures array
+                        let newFixtures = [...fixturesRef.current]
+                        // console.log('newFixtures: ', newFixtures)
+                        newFixtures[index] = payload.new
+                        setFixtures(newFixtures)
+                        // console.log('payload.new: ', payload.new)
+
+                        // 2) Update fixturesByGroup object
+                        updateFixturesByGroup(newFixtures)
+                    }
+                })
+                .subscribe()
+        }
+    }
 
     const fetchStandings = async () => {
         let { data: standings, error } = await supabase.from('standings').select('*').order('group_name', true).order('rank', true)
@@ -225,7 +250,7 @@ export default function euro2020() {
             }
             array[index].push(fixtures[i])
         }
-        console.log('array: ', array)
+        // console.log('array: ', array)
         setFixturesByGroup(array)
         return array
     }

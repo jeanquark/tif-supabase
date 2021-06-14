@@ -11,22 +11,32 @@ export function EventsContextProvider(props) {
     useEffect(async () => {
         console.log('[eventsContext] useEffect EventsContextProvider')
         if (events.length < 1) {
-            setEventsHandler()
+            fetchEvents()
         }
     }, [])
 
-    async function setEventsHandler() {
-        console.log('[eventsContext] setEventsHandler FETCH DATA FROM DB!!')
-
+    async function fetchEvents() {
+        console.log('[eventsContext] fetchEvents FETCH DATA FROM DB!!')
         const { data, error } = await supabase.from('events').select('*').order('id', true)
             console.log('data: ', data)
             if (error) console.log('error: ', error)
             else setEvents(data)
     }
 
+    // async function setEventsHandler(event) {
+    //     console.log('[eventsContext] setEventsHandler FETCH DATA FROM DB!!')
+    //     console.log('[eventsContext] event: ', event)
+
+    //     const { data, error } = await supabase.from('events').select('*').order('id', true)
+    //         console.log('data: ', data)
+    //         if (error) console.log('error: ', error)
+    //         else setEvents(data)
+    // }
+
     const context = {
         events,
-        setEvents: setEventsHandler
+        // setEvents: setEventsHandler
+        setEvents
     };
 
     return (
