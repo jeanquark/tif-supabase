@@ -175,7 +175,7 @@ export default function Login(props) {
                     {'.'}
                 </Typography>
                 <Typography variant="caption" color="textSecondary" display="block" align="center">
-                    Last successful deployment: Friday June 11, 18:36.
+                    Last successful deployment: Thursday July 1, 16:26.
                 </Typography>
             </>
         )

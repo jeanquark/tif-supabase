@@ -124,7 +124,7 @@ export default function euro2020() {
 
     useEffect(() => {
         console.log('useEffect')
-        const nextFixtures = fixtures.filter((fixture) => moment(fixture.date).format('YYYY-MM-DD') >= moment().utc().format('YYYY-MM-DD')).slice(0, 3)
+        const nextFixtures = fixtures.filter((fixture) => moment(fixture.date).format('YYYY-MM-DD') >= moment().utc().format('YYYY-MM-DD')).slice(0, 3).sort((a, b) => a.timestamp - b.timestamp)
         console.log('nextFixtures: ', nextFixtures)
         setNextFixtures(nextFixtures)
         const array = [[]]

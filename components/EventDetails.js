@@ -33,7 +33,7 @@ export default function EventDetails() {
     const classes = useStyles()
     // let mySubscription = null
     let subscriptionEvents = null
-    const [event, setEvent] = useState('')
+    const [event, setEvent] = useState(null)
     const [updateEvent, handleUpdateEvent] = useState(null)
     const [error, setError] = useState('')
     const [timer, setTimer] = useState(12572000)
@@ -122,19 +122,16 @@ export default function EventDetails() {
     return (
         <Box>
             <Box display="flex" style={{ margin: 10, padding: 8 }}>
-                <Box m="auto">
-                    {event && <Box mb={2} className={classes.avatar}>
+                {/* <NoSsr> */}
+                {event && <Box m="auto">
+                    <Box mb={2} className={classes.avatar}>
                         <img src={`/images/countries_euro2020/${event.home_team_image}`} height="60" style={{ marginRight: '10px' }} />
                         <img src={`/images/countries_euro2020/${event.visitor_team_image}`} height="60" style={{ marginLeft: '10px' }} />
-                    </Box>}
+                    </Box>
                     <Typography variant="h5" align="center">
                         {event.home_team_name} - {event.visitor_team_name}
                     </Typography>
-                    {/* <NoSsr> */}
-                        {event && displayResult(parseInt(event.timestamp - moment().unix()) * 1000)}
-                        {/* {event && displayResult(parseInt(event.timestamp))} */}
-                        {/* {displayResult(12572000)} */}
-                    {/* </NoSsr> */}
+                    {event && displayResult(parseInt(event.timestamp - moment().unix()) * 1000)}
                     <Typography component="p" align="center">
                         <b>{event.venue_name}</b>,&nbsp;<b>{event.city}</b>
                     </Typography>
@@ -143,7 +140,19 @@ export default function EventDetails() {
                             <Moment format="ddd Do MMM YYYY, HH:mm">{event.date}</Moment>
                         </NoSsr>
                     </Typography>
-                </Box>
+
+                    {/* event.events: {event.events[0]['team']['id']}<br /> */}
+                    {/* event.events.length: {event.events.length} */}
+                    {event.events?.map((event, index) => {
+                        return (<Box key={index}>
+                            {event.type}&nbsp; 
+                            {event.detail}&nbsp;
+                            {event.time.elapsed}''&nbsp;
+                            {event.player.name}
+                        </Box>)
+                    })}
+                </Box>}
+                {/* </NoSsr> */}
             </Box>
         </Box>
     )

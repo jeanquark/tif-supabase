@@ -371,7 +371,7 @@ export default function ActionList(props) {
             <br />
             <h3 style={{ marginBottom: 5 }}>Players online:</h3>
             <Box display="flex" style={{ border: '0px solid orange' }}>
-                {eventUsers.length ?
+                {eventUsers?.length ?
                     eventUsers.map((eventUser) => (
                         <Tooltip title={eventUser.username || 'anonymous'} placement="top" key={eventUser.id}>
                             <Avatar alt="def" src={`/images/avatar.png`} />
